@@ -112,12 +112,12 @@
     <!-- gunung Grid -->
     <section class="bg-light" id="portfolio">
       <div class="container">
-        <div class="row">
+        <div class="row justify-content-center"> <!-- Tambahkan kelas justify-content-center -->
           <div class="col-lg-12 text-center">
             <h2 class="section-heading text-uppercase">Jenis Gunung</h2>
           </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-center"> <!-- Tambahkan kelas justify-content-center -->
           <div class="col-md-4 col-sm-6 portfolio-item">
             <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
               <div class="portfolio-hover">
@@ -125,7 +125,7 @@
                   <i class="fa fa-search fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/Butak.jpg" alt="">
+              <img class="img-fluid" src="img/Buthak.jpg" alt="Gunung Buthak">
             </a>
             <div class="portfolio-caption">
               <h4>Gunung Bhutak</h4>
@@ -139,18 +139,17 @@
                   <i class="fa fa-search fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/panderman.jpg" alt="">
+              <img class="img-fluid" src="img/panderman.jpg" alt="Gunung Panderman">
             </a>
             <div class="portfolio-caption">
               <h4>Gunung Panderman</h4>
               <p class="text-muted">Gn Panderman, Dusun Toyomerto, Desa Pesanggrahan, Kecamatan Batu, Kota Batu Kota Batu, Jawa Timur</p>
             </div>
           </div>
-          
-          </div>
         </div>
       </div>
     </section>
+    
 
     <!-- registrasi -->
     <section id="about">
@@ -250,7 +249,7 @@
               </li>
               <li class="timeline-inverted">
                 <div class="timeline-image">
-                  <a href="registrasi.html" style="color: black;"><h4>Booking
+                  <a href="registrasi.php" style="color: black;"><h4>Booking
                     <br>Gunung!
                       <br>Disini!
                     </h4>
@@ -370,7 +369,7 @@
                     <li>Koordinat:  7°56′30″S 112°57′00″E / 7.94167°S 112.95000°E</li>
                   </ul>
                   <p>Gunung Butak adalah sebuah gunung berapi kerucut yang terletak di perbatasan Kabupaten Malang dan Kabupaten Blitar dalam wilayah Provinsi Jawa Timur, Indonesia. Gunung Butak terletak berdekatan dengan Gunung Kawi. Tidak diketemukan catatan sejarah atas erupsi dari Gunung Butak sampai saat ini.[1] Gunung ini berada pada posisi -7,922566˚ dan 112,451688˚ dengan ketinggian 2.868 mdpl(9,409 ft).</p>
-                  <img class="img-fluid d-block mx-auto" src="img/jalurbromo.jpg" alt="">
+                  <img class="img-fluid d-block mx-auto" src="img/jalurbutak.jpg" alt="">
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>
                     Close Project</button>
@@ -382,61 +381,7 @@
       </div>
     </div>
 
-    <!-- Modal 2 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">GUNUNG RINJANI</h2>
-                  <p class="item-intro text-muted">Gn. Rinjani, Kabupaten Lombok Barat, Lombok Tengah, dan Lombok Timur, Provinsi Nusa Tenggara Barat.</p>
-                  <ul class="list-inline">
-                    <li>Ketinggian: 3.726 mdpl</li>
-                    <li>Status: Aktif</li>
-                    <li>Koordinat:  8°24′52S 116°27′35E </li>
-                  </ul>
-                  <p>Gunung Rinjani berlokasi di Pulau Lombok, Nusa Tenggara Barat. Gunung yang merupakan gunung berapi kedua tertinggi di Indonesia dengan ketinggian 3.726 m dpl serta terletak pada lintang 8º25' LS dan 116º28' BT ini merupakan gunung favorit bagi pendaki Indonesia karena keindahan pemandangannya. Gunung ini merupakan bagian dari Taman Nasional Gunung Rinjani yang memiliki luas sekitar 41.330 ha dan ini akan diusulkan penambahannya sehingga menjadi 76.000 ha ke arah barat dan timur.</p>
-                  <img class="img-fluid d-block mx-auto" src="img/jalurinjani.jpg" alt="">
-                  <p>Jalur Senaru adalah Jalur pendakian Senaru adalah jalur pendakian paling ramai. Jalur pendakian yang cukup mudah ini sering digunakan untuk wisata trekking, juga oleh masyarakat adat yang akan melakukan ritual adat dan keagamaan di puncak Rinjani atau Danau Segara Anak.
-                    Rute pendakian meliputi Senaru – Pelawangan Senaru – Danau Segara Anak. Semua ditempuh dengan berjalan kaki selama kurang lebih 10 hingga 12 jam melalui trail wisata yang berada di hutan primer. Selama menyusuri trail kamu bisa beristirahat karena di sepanjang trail sudah tersedia sarana peristirahatan pada setiap pos. Di sepanjang perjalanan, kamu bisa menikmati indahnya hutan belantara yang liar dan formasi bebatuan yang menakjubkan.
-                    Pemandangan di ujung track Senaru.
-                    Ringkasan jalur Senaru:
-                    Mataram – Senaru (3-4 Jam dengan mobil)
-                    Senaru – Danau Segara Anak (7-10 jam jalan kaki
-                    Danau Segara Anak – Pelawangan Sembalun (4 jam jalan kaki)
-                    Pelawangan Sembalun – Puncak Rinjani (2-3 jam jalan kaki)
-                  Jalur Sembalun
-                    Jalur Sembalun juga merupakan jalur trekking yang ramai oleh para pendaki. Rute yang dilalui adalah gerbang Sembalun Lawang – Pelawangan Sembalun – Puncak Rinjani memakan waktu 9 – 10 jam. Jalur ini begitu mengesankan dan menegangkan dengan padang savana dan punggung gunung berhiaskan jurang di kiri dan kanan jalur.
-                  Ringkasan jalur Sembalun:
-                    Mataram – Sembalun (4-5 jam mobil )
-                    Sembalun Lawang – Puncak Gunung Rinjani (7 jam jalan kaki)
-                    Sembalun Lawang – Danau Segara Anak (2-3 jam jalan kaki)
-                  alur Torean
-                    Jalur Torean termasuk jalur pendakian yang ekstrim dan tak cocok untuk pemula. Tapi seperti hukum alam yang berlaku, makin sulit sesuatu dilakukan, makin memuaskan hasil yang didapat. Jalur Torean memang memiliki berjuta pesona yang sulit ditandingi. Jika ingin menikmati pemandangan yang variatif, kamu bisa memilih dua jalur yang berbeda, misalnya naik melalui Sembalun dan turun melalui Torean (Sembalun-Torean). Dengan mendaki melalui Sembalun, kamu bisa lebih mudah menggapai puncak Rinjani. Lalu ketika turun melaui jalur Torean, kamu bisa menikmati keindahan alam yang berbeda.
-                 Ringkasan jalur pendakian Torean:
-                    Mataram – Torean (4-5 jam mobil)
-                    Torean – Danau Segara Anak (8-9 jam jalan kaki)
-                  </p>
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
-                    Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 3 -->
+        <!-- Modal 3 -->
     <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -462,162 +407,6 @@
                   <img class="img-fluid d-block mx-auto" src="img/jalurpanderman.jpg" alt="">
                   <p>Untuk sampai ke puncak anda hanya membutuhkan waktu 2-3 jam. Jika anda menggunakan kendaraan pribadi, anda bisa menempuh perjalanan selama kurang lebih 30 menit dari kota Malang dan anda bisa menitipkannya di basecamp panderman yang berada di rumah paling ujung gapura panderman, disitu juga anda akan mendaftarkan siapa saja yang akan ikut mendaki. Jika anda berkendara dengan menggunakan sepeda motor, anda bisa menitipkan ke tempat penitipan sepeda motor yang dikelola oleh warga sekitar hanya dengan cukup membayar 5000/malam.
                     Ada dua pos sebelum kita mencapai puncak gunung ini. Pertama kita akan menjumpai pos Latar Ombo yang berada di ketinggian 1604 mdpl. Tempat ini bisaanya digunakan untuk camping para pendaki. Disini juga tersedia sumber mata air yang masih sangat jernih sehingga anda dapat menggunakannya untuk minum juga memasak. Setelah anda melanjutkan perjalanan, anda akan menjumpai pos kedua yakni Watu Gede karena tempat ini memang terdapat banyak sekali batu besar yang bisa digunakan untuk beristirahat.</p>
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
-                    Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 4 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">GUNUNG LAWU</h2>
-                  <p class="item-intro text-muted">Gn. Lawu, Gondosuli, Tawangmangu, Kabupaten Karanganyar, Jawa Tengah</p>
-                 <ul class="list-inline">
-                    <li>Ketinggian:3.265 mdpl</li>
-                    <li>Status: Tidak Aktif</li>
-                    <li>Koordinat: 111°11’39 LS 07°37’37 BT </li>
-                  </ul>
-                  <p>Terletak di Pulau Jawa, Indonesia, tepatnya di perbatasan Provinsi Jawa Tengah dan Jawa Timur. Gunung Lawu terletak di antara tiga kabupaten yaitu Kabupaten Karanganyar, Jawa Tengah, Kabupaten Ngawi, dan Kabupaten Magetan, Jawa Timur. Status gunung ini adalah gunung api "istirahat" (diperkirakan terahkir meletus pada tanggal 28 November 1885[3][4]) dan telah lama tidak aktif, terlihat dari rapatnya vegetasi serta puncaknya yang tererosi. Di lerengnya terdapat kepundan kecil yang masih mengeluarkan uap air (fumarol) dan belerang (solfatara). Gunung Lawu mempunyai kawasan hutan Dipterokarp Bukit, hutan Dipterokarp Atas, hutan Montane, dan hutan Ericaceous. Gunung Lawu adalah sumber inspirasi dari nama kereta api Argo Lawu, kereta api eksekutif yang melayani Solo Balapan-Gambir.
-                   Gunung Lawu memiliki tiga puncak, Puncak Hargo Dalem, Hargo Dumiling dan Hargo Dumilah. Yang terakhir ini adalah puncak tertinggi.</p>
-                  <img class="img-fluid d-block mx-auto" src="img/jalurlawu.jpg" alt="">
-                  <p>Jalur Pendakian
-                    Pendakian melalui Cemoro Sewu, Wilayah Timur 
-                    Jarak yang harus ditempuh sejauh 9 km. Jalan berupa jalan setapak yang sudah diberi batu sehingga merupakan jalan permanen yang besar, jalan ini sampai mendekati pos IV. 
-                    Pos I, Pos II, Pos III, Pos IV, Sendang Drajat, Hargo Dalem, Puncak (Hargo Dumilah).
-                    Shelter di Pos II, Pos III, Haro Dalem, dan Puncak.
-                    Sumber air sangat sedikit, hanya terdapat di Sendang Drajat dan kalau hujan ada di Sumur Jalatunda
-                    Obyek yang menarik adalah padang rumput, padang edelweis, gugusan bukit.
-                    Juga terdapat tempat pertapaan (Hargo Dalem) yang selalu ramai dikunjungi para peziarah.Puncak Udara di puncak cukup dingin, angin kencang, cuaca cerah, terdiri tanah lapang.
-                    Pendakian melalui Cemoro Kandang, Jawa Tengah 
-                    Cemoro Kandang merupakan tempat pendakian G Lawu yang berada di perbatasan Jawa Tengah dan Jawa Timur, banyak terdapat warung makan sehingga kita dapat membeli perbekalan dan sekedar makan di sana. Apabila kita menginginkan tempat beristirahat kita dapat menggunakan posko pendakian  yang berupa pondok maupuun mengunakan tempat Pak Atmo yang berada 1 km sebelum Cemoro Kandang. Untuk perijinan apabila tidak berombongan lebih dari 20 orang hanya perlu meninggalkan kartu identitas serta membayar restribusi serta asuransi.
-                    Dari Cemoro Kandang mencapai Puncak dibutuhkan waktu kira-kira 7 jam menempuh kurang lebih 12 km. Medan yang ditempuh berupa pepohonan yang lumayan lebat, mendekati puncak vegetasi menjadi lebih jarang. Apabila sedang musim Oktober - Desember maka edelweis akan berbunga dan merupakan pemandangan yg indah.
-                    Rute perjalanan :
-                      Cemoro Kandang (1600 mdpl)  - Pos I (taman Sari Bawah - 2300 mdpl)
-                      Dapat ditempuh dalam waktu 1 jam, terdapat pondok pendakian yang terbuat dari batu, di depan pondok terdapat jalan setapak menuju ke sungai yang mengandung sulfur. Perjalanan relatif santai karena jalan masih belum terlalu menanjak.
-                      Pos I - Pos II (Taman Sari Atas - 2470 mdpl)
-                      Waktu tempuh sekitar 1 jam. Dulu di pos II ini terdapat pondok pendakian dari kayu tetapi sekarang sudah hilang ditelan waktu. Dari Pos II ada jalan setapak menuju ke Kawah Lawu, perjalanan menuju kawah dapat ditempuh kurang lebih 30 menit. Perjalanan ke pos II ini sudah mulai agak menanjak dengan pemandangan pohon-pohon bekas terbakar.
-                      Pos II - Pos III (Penggik - 2760 mdpl)
-                      Perjalanan lumayan jauh dari Pos II karena pada awal pos II jalanan mendatar dan setelah hampir mendekati pos III jalanan mendaki dan berkelok-kelok. Waktu tempuh 2,5 jam. Ada pos pendakian berupa gubug dari kayu dan seng. Agak ke atas sedikit terdapat mata air yang diberi nama Sendang Panguripan. Tetapi di sarankan membawa persediaan air dari bawah karena kalo pada musim kemarau air hanya sedikit dan keruh.
-                      Pos III - Pos IV (Cokro Suryo - 3025 mdpl)
-                      Perjalanan memakan waktu 1,5 jam, kondisi jalan mulai agak curam dengan mulai bergantinya vegetasi ke vegetasi yang lebih jarang. Cokro Suryo merupakan tanah lapang dengan pemandangan yang luas, angin sering kali bertiup dengan kencang, dulu posko pendakian di sini hancur dihantam badai.
-                      Pos IV - Pos V (3150 mdpl)
-                      Dapat kita tempuh dalam waktu 0,5 jam.
-                      Pos V - Argo Dalem (3170 mdpl)
-                      Diatas pos IV akan kita temui pesanggrahan yang bernama Argo Dalem, merupakan tempat untuk menyepikan diri bagi penganut Kejawen. Jalur dari Cemoro Sewu akan bertemu di sini untuk kemudian menjadi jalur menuju puncak.  
-                      Argo Dalem - Puncak (Argo Dumilah - 3265 mdpl)
-                      Perjalanan menuju ke puncak akan melewati jalan yang merupakan jalan air sehingga kalau hujan akan ada aliran air turun. Waktu tempuh kurang lebih 1 jam. Di puncak terdapat tugu peringatan dari batu dan ada pondok pendakian dari papan, tetapi diharapkan untuk membawa perlengkapan sendiri sebab pondok-pondok pendakian di G Lawu selalu terisi, jadi jangan terlalu mengandalkan posko.</p>
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
-                    Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 5 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">GUNUNG SEMERU</h2>
-                  <p class="item-intro text-muted">Gn. Semeru, Pasrujambe, Kabupaten Lumajang, Jawa Timur</p>
-                   <ul class="list-inline">
-                    <li>Ketinggian: 3.744 mdpl</li>
-                    <li>Status: Aktif</li>
-                    <li>Koordinat: 8°06' LS 112°55' BT. </li>
-                  </ul>
-                  <p>Gunung Semeru atau Gunung Meru adalah sebuah gunung berapi kerucut di Jawa Timur, Indonesia. Gunung Semeru merupakan gunung tertinggi di Pulau Jawa, dengan puncaknya Mahameru, 3.676 meter dari permukaan laut (mdpl). Gunung Semeru juga merupakan gunung berapi tertinggi ketiga di Indonesia setelah Gunung Kerinci di Sumatera dan Gunung Rinjani di Nusa Tenggara Barat[1]. Kawah di puncak Gunung Semeru dikenal dengan nama Jonggring Saloko. Gunung Semeru secara administratif termasuk dalam wilayah dua kabupaten, yakni Kabupaten Malang dan Kabupaten Lumajang, Provinsi Jawa Timur. Gunung ini termasuk dalam kawasan Taman Nasional Bromo Tengger Semeru.
-                    Diperlukan waktu sekitar empat hari untuk mendaki puncak gunung Semeru pergi-pulang. Untuk mendaki gunung dapat ditempuh lewat kota Malang atau Lumajang. Dari terminal Kota Malang naik angkutan umum menuju desa Tumpang. Disambung lagi dengan jeep atau truk/pickup yang banyak terdapat di belakang pasar terminal Tumpang dengan</p>
-                  <img class="img-fluid d-block mx-auto" src="img/jalursemeru.jpg" alt="">
-                  <p>Jalur/Rute Pendakian Gunung Semeru
-                    Setelah sampai dari pos Ranu Pani, kamu bisa memilih dua jalur untuk melakukan pendakian, yaitu: jalur Ayak-Ayak dan jalur Watu Rejeng, diantara kedua jalur tersebut memiliki perbedaan.
-                  Jalur Ayak-Ayak
-                    Jalur Ayak-Ayak relatif jarang dipilih oleh pendaki karena melalui trek yang berdebu dan berbatu. Belakangan ini jalur ini juga lebih sering ditutup oleh petugas demi keselamatan pendaki.
-                    Jalur / Rute Pendakian:
-                    Ranupani – Gunung Ayak-Ayak – Panggonan Cilik – Ranu Kumbolo = (5jam)
-                    Ranu Kumbolo – Oro-Oro Ombo = 1km (30 Menit)
-                    Oro-Oro Ombo – Cemoro Kandang = 1,5km (30 Menit)
-                    Cemoro Kandang – Jambangan = 3km (30 Menit)
-                    Jambangan – Kalimati= 2km (30 Menit)
-                    Kalimati – Arcopodo = 1,2km (2,5jam)
-                    Arcopodo – Cemoro Tunggal – Puncak Semeru = 1,5km (3-4jam)
-                    Jalur Watu Rejeng
-                    Jalur watu Rejeng ini sering dipilih oleh para pendaki, karena trek yang ditempuh tidak terlalu sulit. Recommended banget buat pendaki pemula di Gunung Semeru.
-                    Jalur / Rute Pendakian:
-                    Ranupani– Landengan Dowo = 3km (1,5jam)
-                    Landengan Dowo – Watu Rejeng = 3km (1,5jam)
-                    Watu Rejeng – Ranu Kumbolo = 4,5km (2jam)
-                    Ranu Kumbolo – Oro-Oro Ombo = 1km (30 Menit)
-                    Oro-Oro Ombo – Cemoro Kandang = 1,5km (30 Menit)
-                    Cemoro Kandang – Jambangan = 3km (30 Menit)
-                    Jambangan – Kalimati= 2km (30 Menit)
-                    Kalimati – Arcopodo = 1,2km (2,5jam)
-                    Arcopodo – Cemoro Tunggal – Puncak Semeru = 1,5km (3-4jam)
-                  </p>
-                  <button class="btn btn-primary" data-dismiss="modal" type="button">
-                    <i class="fa fa-times"></i>
-                    Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 6 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">GUNUNG MERBABU</h2>
-                  <p class="item-intro text-muted">Gn Merbabu, Suroteleng, Selo, Kabupaten Boyolali, Jawa Tengah<p>
-                  <img class="img-fluid d-block mx-auto" src="img/portfolio/06-full.jpg" alt="">
-                  <ul class="list-inline">
-                    <li>Ketinggian: 3.145 mdpl</li>
-                    <li>Status: Akrif</li>
-                    <li>Koordinat: 7,5° LS 110,4° BT.  </li>
-                  </ul>
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                  <img class="img-fluid d-block mx-auto" src="img/jalurmerbabu.jpg" alt="">
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>
                     Close Project</button>

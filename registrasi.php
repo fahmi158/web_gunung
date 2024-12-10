@@ -103,7 +103,7 @@
                     <label class="form-check-label" for="exampleCheck1">Bagi yang belum memiliki KTP, membawa surat ijin dari orang tua/bermaterai, FotoCopy KK dan KTP orang tua</label>
                   </div><hr>
                   <a>Anda memahami, menyetujui, syarat dan ketentuan-ketentuan di atas:</a><br/><br/>
-                  <a class="btn btn-primary text-uppercase js-scroll-trigger" href="cekkuotabromo.html" style="color: black;">Cek Kuota Pendaki</a>
+                  <a class="btn btn-primary text-uppercase js-scroll-trigger" href="cekkuotabuthak.php" style="color: black;">Cek Kuota Pendaki</a>
               </div>
             </div>
           </div>
