@@ -1,170 +1,165 @@
+<?php
+require 'server/config.php';
+
+// Mengambil data dari tabel jadwal
+$sql = "SELECT `idJadwal`, `namaGunung`, `tanggal`, `kuota` FROM `jadwal` WHERE 1";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Cek Kuota</title>
-
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom fonts for this template -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
     <!-- Custom styles for this template -->
     <link href="css/agency1.css" rel="stylesheet">
+</head>
 
-  </head>
-
-  <body id="page-top">
-
+<body id="page-top">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/logoyellow.png" width="150px"></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#service">Melayani</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#portfolio">Gunung</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#about">Registrasi</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#">Persyaratan</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#team">Team</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#contact">Hubungi</a>
-            </li>
-          </ul>
-        </div>
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/logoyellow.png" width="150px"></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#service">Melayani</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#portfolio">Gunung</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#about">Registrasi</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Persyaratan</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#contact">Hubungi</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <!-- contact -->
+    <!-- Contact -->
     <section id="contact">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Cek Kuota Pendakian Gunung Butak</h2>
-            <h3 class="section-subheading text-muted" style="color: #fff;">Pilih tanggal mendaki dan lihat apakah kuota sudah penuh.</h3>
-          </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Cek Kuota Pendakian Gunung Butak</h2>
+                    <h3 class="section-subheading text-muted" style="color: #fff;">Pilih tanggal mendaki dan lihat apakah kuota sudah penuh.</h3>
+                </div>
+            </div>
+            <form>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1" style="color: white;">Pilih Bulan</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Januari</option>
+                            <option>Februari</option>
+                            <option>Maret</option>
+                            <option>April</option>
+                            <option>Mei</option>
+                            <option>Juni</option>
+                            <option>Juli</option>
+                            <option>Agustus</option>
+                            <option>September</option>
+                            <option>Oktober</option>
+                            <option>November</option>
+                            <option>Desember</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1" style="color: white;">Pilih Tahun</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>2024</option>
+                            <option>2025</option>
+                            <option>2026</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <br /><br />
+
+            <!-- Table displaying the available schedules -->
+            <table class="table table-hover" style="color: white; text-align: center;">
+                <thead>
+                    <tr>
+                        <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
+                        <th scope="col" style="background-color: cadetblue; color: black;">Kuota Pendaki</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    // Menampilkan data dari tabel jadwal
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>
+                                <td>" . $row["tanggal"] . "</td>
+                                <td>" . $row["kuota"] . "</td>
+                            </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='2'>Tidak ada data yang ditemukan</td></tr>";
+                    }
+
+                    // Menutup koneksi
+                    $conn->close();
+                    ?>
+                </tbody>
+            </table>
         </div>
-          
-          <form>
-          <div class="col-lg-12">
-          <div class="form-group">
-            <label for="exampleFormControlSelect1" style="color: white;">Pililh Bulan</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>Januari</option>
-              <option>Februari</option>
-              <option>Maret</option>
-              <option>April</option>
-              <option>Mei</option>
-              <option>Juni</option>
-              <option>Juli</option>
-              <option>Agustus</option>
-              <option>September</option>
-              <option>Oktober</option>
-              <option>November</option>
-              <option>Desember</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlSelect1" style="color: white;">Pililh Tahun</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>2024</option>
-              <option>2025</option>
-              <option>2026</option>
-            </select>
-                  </div></div>
-          </form><br/><br/>
-          
-          <table class="table table-hover" style="color: white; text-align: center;">
-          <thead>
-            <tr>
-              <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
-              <th scope="col" style="background-color: cadetblue; color: black;">Kuota pendaki</th>
-            </tr>
-          </thead>
-        
-        </table>
-      </div>
     </section>
 
-      <!-- Footer -->
+    <!-- Footer -->
     <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <span class="copyright">Copyright &copy; Mountain 2018</span>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline social-buttons">
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-facebook"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-instagram"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline quicklinks">
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-            </ul>
-          </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Mountain 2018</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li class="list-inline-item">
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
     </footer>
-      
+
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
     <!-- Contact form JavaScript -->
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
-
     <!-- Custom scripts for this template -->
     <script src="js/agency.min.js"></script>
 
-  </body>
+</body>
 
 </html>

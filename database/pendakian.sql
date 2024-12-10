@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Des 2024 pada 05.48
+-- Waktu pembuatan: 10 Des 2024 pada 07.07
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.0.25
 
@@ -58,6 +58,7 @@ CREATE TABLE `anggota` (
 CREATE TABLE `booking` (
   `noPesanan` int(11) NOT NULL,
   `idKetua` int(11) DEFAULT NULL,
+  `idJadwal` int(11) NOT NULL,
   `tgl_pendakian` date DEFAULT NULL,
   `jumlah_anggota` int(11) DEFAULT NULL,
   `total_pembayaran` decimal(10,2) DEFAULT NULL
@@ -71,10 +72,44 @@ CREATE TABLE `booking` (
 
 CREATE TABLE `jadwal` (
   `idJadwal` int(11) NOT NULL,
-  `noPesanan` int(11) NOT NULL,
+  `namaGunung` varchar(255) NOT NULL,
   `tanggal` date DEFAULT NULL,
   `kuota` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `jadwal`
+--
+
+INSERT INTO `jadwal` (`idJadwal`, `namaGunung`, `tanggal`, `kuota`) VALUES
+(1, 'Buthak', '2024-12-10', 100),
+(2, 'Buthak', '2024-12-11', 100),
+(3, 'Buthak', '2024-12-12', 100),
+(4, 'Buthak', '2024-12-13', 100),
+(5, 'Buthak', '2024-12-14', 100),
+(6, 'Buthak', '2024-12-15', 100),
+(7, 'Buthak', '2024-12-16', 100),
+(8, 'Buthak', '2024-12-17', 100),
+(9, 'Buthak', '2024-12-18', 100),
+(10, 'Buthak', '2024-12-19', 100),
+(11, 'Buthak', '2024-12-20', 100),
+(12, 'Buthak', '2024-12-21', 100),
+(13, 'Buthak', '2024-12-22', 100),
+(14, 'Buthak', '2024-12-23', 100),
+(15, 'Panderman', '2024-12-10', 100),
+(16, 'Panderman', '2024-12-11', 100),
+(17, 'Panderman', '2024-12-12', 100),
+(18, 'Panderman', '2024-12-13', 100),
+(19, 'Panderman', '2024-12-14', 100),
+(20, 'Panderman', '2024-12-15', 100),
+(21, 'Panderman', '2024-12-16', 100),
+(22, 'Panderman', '2024-12-17', 100),
+(23, 'Panderman', '2024-12-18', 100),
+(24, 'Panderman', '2024-12-19', 100),
+(25, 'Panderman', '2024-12-20', 100),
+(26, 'Panderman', '2024-12-21', 100),
+(27, 'Panderman', '2024-12-22', 100),
+(28, 'Panderman', '2024-12-23', 100);
 
 -- --------------------------------------------------------
 
@@ -129,14 +164,14 @@ ALTER TABLE `anggota`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`noPesanan`),
-  ADD KEY `idKetua` (`idKetua`);
+  ADD KEY `idKetua` (`idKetua`),
+  ADD KEY `idJadwal` (`idJadwal`);
 
 --
 -- Indeks untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
-  ADD PRIMARY KEY (`idJadwal`),
-  ADD KEY `noPemesanan` (`noPesanan`);
+  ADD PRIMARY KEY (`idJadwal`);
 
 --
 -- Indeks untuk tabel `ketua_pendakian`
@@ -178,7 +213,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `idJadwal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idJadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `ketua_pendakian`
@@ -206,13 +241,8 @@ ALTER TABLE `anggota`
 -- Ketidakleluasaan untuk tabel `booking`
 --
 ALTER TABLE `booking`
-  ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`idKetua`) REFERENCES `ketua_pendakian` (`idKetua`);
-
---
--- Ketidakleluasaan untuk tabel `jadwal`
---
-ALTER TABLE `jadwal`
-  ADD CONSTRAINT `fk_noPesanan` FOREIGN KEY (`noPesanan`) REFERENCES `booking` (`noPesanan`);
+  ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`idKetua`) REFERENCES `ketua_pendakian` (`idKetua`),
+  ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`idJadwal`) REFERENCES `jadwal` (`idJadwal`);
 
 --
 -- Ketidakleluasaan untuk tabel `pembayaran`
