@@ -79,34 +79,36 @@
                 </button>
               </h5>
             </div>
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body">
-                  <a>Ceklist Persayaran Pendakian</a><hr>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Membawa bukti transfer pembayaran dari BANK</label>
-                  </div>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Menunjukan Bukti Cetak Pembayaran dari Balai Besar TNBTS</label>
-                  </div>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Membawa Surat Keterangan Sehat dari Dokter (Tanggal surat keterangan sehat dokter H-1 sebelum pendakian)</label>
-                  </div>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Membawa Fotokopy KTP/KTM/Paspor yang masih berlaku</label>
-                  </div>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Bagi yang belum memiliki KTP, membawa surat ijin dari orang tua/bermaterai, FotoCopy KK dan KTP orang tua</label>
-                  </div><hr>
-                  <a>Anda memahami, menyetujui, syarat dan ketentuan-ketentuan di atas:</a><br/><br/>
-                  <a class="btn btn-primary text-uppercase js-scroll-trigger" href="cekkuotabuthak.php" style="color: black;">Cek Kuota Pendaki</a>
+            <form action="" method="get">
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <a>Ceklist Persayaran Pendakian</a><hr>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Membawa bukti transfer pembayaran dari BANK</label>
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Menunjukan Bukti Cetak Pembayaran dari Balai Besar TNBTS</label>
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Membawa Surat Keterangan Sehat dari Dokter (Tanggal surat keterangan sehat dokter H-1 sebelum pendakian)</label>
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Membawa Fotokopy KTP/KTM/Paspor yang masih berlaku</label>
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Bagi yang belum memiliki KTP, membawa surat ijin dari orang tua/bermaterai, FotoCopy KK dan KTP orang tua</label>
+                    </div><hr>
+                    <a>Anda memahami, menyetujui, syarat dan ketentuan-ketentuan di atas:</a><br/><br/>
+                    <a class="btn btn-primary text-uppercase js-scroll-trigger" href="cekkuotabuthak.php" style="color: black;">Cek Kuota Pendaki</a>
+                </div>
               </div>
             </div>
-          </div>
+            </form>
           <div class="card">
             <div class="card-header" id="headingThree">
               <h5 class="mb-0">
@@ -116,31 +118,33 @@
               </h5>
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-              <div class="card-body">
-                <a>Ceklist Persayaran Pendakian</a><hr>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Membawa bukti transfer pembayaran dari BANK</label>
-                  </div>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Menunjukan Bukti Cetak Pembayaran dari Balai Besar TNBTS</label>
-                  </div>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Membawa Surat Keterangan Sehat dari Dokter (Tanggal surat keterangan sehat dokter H-1 sebelum pendakian)</label>
-                  </div>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Membawa Fotokopy KTP/KTM/Paspor yang masih berlaku</label>
-                  </div>
-                  <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Bagi yang belum memiliki KTP, membawa surat ijin dari orang tua/bermaterai, FotoCopy KK dan KTP orang tua</label>
-                  </div><hr>
-                  <a>Anda memahami, menyetujui, syarat dan ketentuan-ketentuan di atas:</a><br/><br/>
-                  <a class="btn btn-primary text-uppercase js-scroll-trigger" href="cekkuotapanderman.html" style="color: black;">Cek Kuota Pendaki</a>
-              </div>
+              <form action="" method="get">
+                <div class="card-body">
+                  <a>Ceklist Persayaran Pendakian</a><hr>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Membawa bukti transfer pembayaran dari BANK</label>
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Menunjukan Bukti Cetak Pembayaran dari Balai Besar TNBTS</label>
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Membawa Surat Keterangan Sehat dari Dokter (Tanggal surat keterangan sehat dokter H-1 sebelum pendakian)</label>
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Membawa Fotokopy KTP/KTM/Paspor yang masih berlaku</label>
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Bagi yang belum memiliki KTP, membawa surat ijin dari orang tua/bermaterai, FotoCopy KK dan KTP orang tua</label>
+                    </div><hr>
+                    <a>Anda memahami, menyetujui, syarat dan ketentuan-ketentuan di atas:</a><br/><br/>
+                    <a class="btn btn-primary text-uppercase js-scroll-trigger" href="cekkuotapanderman.php" style="color: black;">Cek Kuota Pendaki</a>
+                </div>
+              </form>
             </div>
           </div>
         </div>

@@ -2,8 +2,19 @@
 require 'server/config.php';
 
 // Mengambil data dari tabel jadwal
-$sql = "SELECT `idJadwal`, `namaGunung`, `tanggal`, `kuota` FROM `jadwal` WHERE 1";
-$result = $conn->query($sql);
+if($_SERVER['REQUEST_METHOD']=='POST'){
+    $tglstart=$_POST['tanggalawal'];
+    $tglend=$_POST['tanggalakhir'];
+    //echo $tglstart;
+  
+    $sql = "SELECT * FROM `jadwal` 
+     WHERE (tanggal BETWEEN '$tglstart' AND '$tglend')
+     AND  ( namaGunung = 'Buthak')
+    ";
+  
+    $result = $conn->query($sql);
+    $res2=mysqli_fetch_all($result,MYSQLI_ASSOC);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -58,34 +69,24 @@ $result = $conn->query($sql);
                     <h3 class="section-subheading text-muted" style="color: #fff;">Pilih tanggal mendaki dan lihat apakah kuota sudah penuh.</h3>
                 </div>
             </div>
-            <form>
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1" style="color: white;">Pilih Bulan</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Januari</option>
-                            <option>Februari</option>
-                            <option>Maret</option>
-                            <option>April</option>
-                            <option>Mei</option>
-                            <option>Juni</option>
-                            <option>Juli</option>
-                            <option>Agustus</option>
-                            <option>September</option>
-                            <option>Oktober</option>
-                            <option>November</option>
-                            <option>Desember</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1" style="color: white;">Pilih Tahun</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>2024</option>
-                            <option>2025</option>
-                            <option>2026</option>
-                        </select>
-                    </div>
-                </div>
+
+            <form ation="" method="post">
+            <div class="d-flex flex-row">
+              <div class="m-2">
+                  <label for="tanggalawal" class="form-label"></label>
+                  <input type="date" class="form-control" placeholder="YYYY-MM-DD" id="tanggalawal" name="tanggalawal" aria-describedby="tanggalawalhelp" value="<?php if(isset($_POST['tanggalawal'])){echo $_POST['tanggalawal'];}?>">
+                  <div id="tanggalawalhelp" class="form-text"></div>
+              </div>
+          
+              <div class="m-2">
+                  <label for="tanggalakhir" class="form-label"></label>
+                  <input type="date" class="form-control" placeholder="YYYY-MM-DD" id="tanggalakhir" name="tanggalakhir" aria-describedby="tanggalakhirhelp" value="<?php if(isset($_POST['tanggalakhir'])){echo $_POST['tanggalakhir'];}?>">
+                  <div id="tanggalakhirhelp" class="form-text"></div>
+              </div>
+              <div class="m-2">
+                  <button type="submit" class="btn btn-primary mt-4 m-2">lihat kuota</button>
+              </div>
+          </div>
             </form>
             <br /><br />
 
@@ -94,16 +95,18 @@ $result = $conn->query($sql);
                 <thead>
                     <tr>
                         <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
+                        <th scope="col" style="background-color: cadetblue; color: black;">gunung</th>
                         <th scope="col" style="background-color: cadetblue; color: black;">Kuota Pendaki</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     // Menampilkan data dari tabel jadwal
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
+                    if(count($res2) > 0) {
+                        foreach ($res2 as $row) {
                             echo "<tr>
                                 <td>" . $row["tanggal"] . "</td>
+                                <td>" . $row["namaGunung"] . "</td>
                                 <td>" . $row["kuota"] . "</td>
                             </tr>";
                         }

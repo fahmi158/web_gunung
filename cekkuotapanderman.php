@@ -1,3 +1,29 @@
+
+<?php 
+require 'server/config.php';
+
+// $sql = "SELECT `idJadwal`, `namaGunung`, `tanggal`, `kuota` FROM `jadwal` WHERE namaGunung = 'Panderman'";
+// $result = $conn->query($sql);
+// $res2=mysqli_fetch_all($result,MYSQLI_ASSOC);
+// var_dump($res2);
+if($_SERVER['REQUEST_METHOD']=='POST'){
+  $tglstart=$_POST['tanggalawal'];
+  $tglend=$_POST['tanggalakhir'];
+  //echo $tglstart;
+
+  $sql = "SELECT * FROM `jadwal` 
+   WHERE (tanggal BETWEEN '$tglstart' AND '$tglend')
+   AND  ( namaGunung = 'Panderman')
+  ";
+
+  $result = $conn->query($sql);
+  $res2=mysqli_fetch_all($result,MYSQLI_ASSOC);
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,167 +96,55 @@
           </div>
         </div>
           
-          <form>
-          <div class="col-lg-12">
-          <div class="form-group">
-            <label for="exampleFormControlSelect1" style="color: white;">Pililh Bulan</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>Januari</option>
-              <option>Februari</option>
-              <option>Maret</option>
-              <option>April</option>
-              <option>Mei</option>
-              <option>Juni</option>
-              <option>Juli</option>
-              <option>Agustus</option>
-              <option>September</option>
-              <option>Oktober</option>
-              <option>November</option>
-              <option>Desember</option>
-            </select>
+        <form action="" method="post">
+          <div class="d-flex flex-row">
+              <div class="m-2">
+                  <label for="tanggalawal" class="form-label"></label>
+                  <input type="date" class="form-control" placeholder="YYYY-MM-DD" id="tanggalawal" name="tanggalawal" aria-describedby="tanggalawalhelp" value="<?php if(isset($_POST['tanggalawal'])){echo $_POST['tanggalawal'];}?>">
+                  <div id="tanggalawalhelp" class="form-text"></div>
+              </div>
+          
+              <div class="m-2">
+                  <label for="tanggalakhir" class="form-label"></label>
+                  <input type="date" class="form-control" placeholder="YYYY-MM-DD" id="tanggalakhir" name="tanggalakhir" aria-describedby="tanggalakhirhelp" value="<?php if(isset($_POST['tanggalakhir'])){echo $_POST['tanggalakhir'];}?>">
+                  <div id="tanggalakhirhelp" class="form-text"></div>
+              </div>
+              <div class="m-2">
+                  <button type="submit" class="btn btn-primary mt-4 m-2">lihat kuota</button>
+              </div>
           </div>
-          <div class="form-group">
-            <label for="exampleFormControlSelect1" style="color: white;">Pililh Tahun</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>2018</option>
-              <option>2019</option>
-              <option>2020</option>
-            </select>
-                  </div></div>
-          </form><br/><br/>
+    </form><br/><br/>
+          <?php 
+          
+          ?>
           
           <table class="table table-hover" style="color: white; text-align: center;">
           <thead>
             <tr>
               <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
+              <th scope="col" style="background-color: cadetblue; color: black;">Gunung</th>
               <th scope="col" style="background-color: cadetblue; color: black;">Kuota pendaki</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Selasa, 8 Mei 2018</td>
-              <td><a href="booking.html">312</a></td>
-            </tr>
-            <tr>
-              <td>Rabu, 9 Mei 2018</td>
-              <td><a href="booking.html">312</a></td>
-            </tr>
-            <tr>
-              <td>Kamis, 10 Mei 2018</td>
-              <td><a href="booking.html">312</a></td>
-            </tr>
-            <tr>
-              <td>Selasa, 8 Mei 2018</td>
-              <td><a href="booking.html">312</a></td>
-            </tr>
-            <tr>
-              <td>Rabu, 9 Mei 2018</td>
-              <td><a href="booking.html">312</a></td>
-            </tr>
-            <tr>
-              <td>Kamis, 10 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Selasa, 8 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Rabu, 9 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Kamis, 10 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Selasa, 8 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Rabu, 9 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Kamis, 10 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Selasa, 8 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Rabu, 9 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Kamis, 10 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Selasa, 8 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Rabu, 9 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Kamis, 10 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Selasa, 8 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Rabu, 9 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Kamis, 10 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Selasa, 8 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Rabu, 9 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Kamis, 10 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Selasa, 8 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Rabu, 9 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Kamis, 10 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Selasa, 8 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Rabu, 9 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Kamis, 10 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
-            <tr>
-              <td>Selasa, 8 Mei 2018</td>
-              <td><a href="">312</a></td>
-            </tr>
+          <?php
+                    // Menampilkan data dari tabel jadwal
+                    if (count($res2) > 0) {
+
+                        foreach ($res2 as $row) {
+                            echo "<tr>
+                                <td>" . $row["tanggal"] . "</td>
+                                <td>" . $row["namaGunung"] . "</td>
+                                <td>" . $row["kuota"] . "</td>
+                            </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='2'>Tidak ada data yang ditemukan</td></tr>";
+                    }
+
+                    // Menutup koneksi
+                    $conn->close();
+                    ?>
           </tbody>
         </table>
       </div>
