@@ -1,3 +1,11 @@
+<?php 
+require 'server/config.php';
+$idjadwal=$_GET['jadwalId'];
+$query="SELECT * FROM jadwal WHERE idJadwal = $idjadwal";
+$result= mysqli_fetch_assoc(mysqli_query($conn,$query));
+//var_dump($result);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,39 +78,39 @@
                           <div class="col-md-12">
                 <form class="form-horizontal" action="?" method="post">
                   <div class="form-group">
-                    <label for="exampleFormControlSelect1" class="col-sm-1" >Gunung Pilihan</label>
                     <div class="col-sm-9">
-                    <select class="form-control" id="exampleFormControlSelect1" name="namagunung">
-                        <option value="<?= $_GET['namagunung']?>"><?= $_GET['namagunung']?></option>
+                    <label for="exampleFormControlSelect1" class="col-sm-3 col-form-label text-light left-0" >Gunung Pilihan</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="namagunung" disabled>
+                        <option value="<?= $_GET['namagunung']?>" ><?= $_GET['namagunung']?></option>
                    </select>
                     </div>
                   <div class="form-group">
-                    <label for="nama" class="col-sm-1" "control-label">Nama</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Lengkap Anda">
+                    <div class="col-sm-9 ">
+                      <label for="nama" class="col-form-label text-light">Nama</label>
+                      <input type="text" class="form-control"id="nama" name="nama" placeholder="Masukkan Nama Lengkap Anda">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="nama" class="col-sm-1" "control-label">Tanggal</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="tanggal" placeholder="Masukkan Tanggal Pendakian">
+                      <label for="nama" class="text-light" "control-label">Tanggal</label>
+                        <input type="date" class="form-control" name="tanggal" placeholder="Masukkan Tanggal Pendakian" value="<?= $result['tanggal']?>" disabled>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="nama" class="col-sm-1" "control-label">Telp.</label>
                     <div class="col-sm-9">
+                      <label for="nama" class="text-light" "control-label">Telp.</label>
                         <input type="text" class="form-control" name="telp" placeholder="Masukkan Nomor Telephone">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="alamat" class="col-sm-1" "control-label">Alamat</label>
                     <div class="col-sm-9">
+                      <label for="alamat" class="text-light" "control-label">Alamat</label>
                         <textarea name="alamat"class="form-control" placeholder="Masukkan Alamat Lengkap"></textarea>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="nama" class="col-sm-1" "control-label">Email</label>
                     <div class="col-sm-9">
+                      <label for="nama" class="text-light" "control-label">Email</label>
                         <input type="text" class="form-control" name="email" placeholder="Masukkan Alamat email">
                     </div>
                   </div>
