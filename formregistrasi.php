@@ -38,22 +38,22 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#service">Melayani</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#service">Melayani</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#portfolio">Gunung</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#portfolio">Gunung</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#about">Registrasi</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#about">Registrasi</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#">Persyaratan</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#team">Team</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#team">Team</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#contact">Hubungi</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#contact">Hubungi</a>
             </li>
           </ul>
         </div>
@@ -70,12 +70,10 @@
                           <div class="col-md-12">
                 <form class="form-horizontal" action="?" method="post">
                   <div class="form-group">
-                    <label for="exampleFormControlSelect1" class="col-sm-1" >Pililh Gunung</label>
+                    <label for="exampleFormControlSelect1" class="col-sm-1" >Gunung Pilihan</label>
                     <div class="col-sm-9">
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>Pilih Gunung</option>
-                        <option>Gunung Bhutak</option>
-                        <option>Gunung Panderman</option>
+                    <select class="form-control" id="exampleFormControlSelect1" name="namagunung">
+                        <option value="<?= $_GET['namagunung']?>"><?= $_GET['namagunung']?></option>
                    </select>
                     </div>
                   <div class="form-group">

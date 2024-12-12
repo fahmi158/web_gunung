@@ -38,22 +38,22 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#service">Melayani</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#service">Melayani</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#portfolio">Gunung</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#portfolio">Gunung</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#about">Registrasi</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#about">Registrasi</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#">Persyaratan</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#team">Team</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#team">Team</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#contact">Hubungi</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#contact">Hubungi</a>
             </li>
           </ul>
         </div>

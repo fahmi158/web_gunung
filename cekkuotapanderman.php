@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
   $result = $conn->query($sql);
   $res2=mysqli_fetch_all($result,MYSQLI_ASSOC);
-
+  //var_dump($res2);
 }
 
 ?>
@@ -64,22 +64,22 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#service">Melayani</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#service">Melayani</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#portfolio">Gunung</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#portfolio">Gunung</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#about">Registrasi</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#about">Registrasi</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#">Persyaratan</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#team">Team</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#team">Team</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="index.html#contact">Hubungi</a>
+              <a class="nav-link js-scroll-trigger" href="index.php#contact">Hubungi</a>
             </li>
           </ul>
         </div>
@@ -124,6 +124,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
               <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
               <th scope="col" style="background-color: cadetblue; color: black;">Gunung</th>
               <th scope="col" style="background-color: cadetblue; color: black;">Kuota pendaki</th>
+              <th scope="col" style="background-color: cadetblue; color: black;">pilih kuota</th>
             </tr>
           </thead>
           <tbody>
@@ -131,12 +132,25 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     // Menampilkan data dari tabel jadwal
                     if (count($res2) > 0) {
 
-                        foreach ($res2 as $row) {
-                            echo "<tr>
-                                <td>" . $row["tanggal"] . "</td>
-                                <td>" . $row["namaGunung"] . "</td>
-                                <td>" . $row["kuota"] . "</td>
-                            </tr>";
+                        foreach ($res2 as $row) {?>
+                            <tr>
+                                <td><?= $row["tanggal"]?></td>
+                                <td><?=$row["namaGunung"] ?></td>
+                                <td><?=$row["kuota"] ?></td>
+                          <?php if($row['kuota']>0){?>
+                                <td>
+                                <form action="formregistrasi.php" method="get">
+                                  <input type="hidden" value="<?= $row['namaGunung']?>" name="namagunung">
+                                  <input type="hidden" value="<?= $row['idJadwal']?>" name="jadwalId">                   
+                                  <button type="submit" class="btn btn-secondary">ambil kuota</button>
+                                </form>
+                                </td>
+        <?php 
+                            }else{
+                              echo "<td>kosong</td>";
+                            }
+                                
+                           echo "</tr>";
                         }
                     } else {
                         echo "<tr><td colspan='2'>Tidak ada data yang ditemukan</td></tr>";
