@@ -7,6 +7,7 @@ $kewarganegaraanResult = $conn->query($kewarganegaraanQuery);
 $kewarganegaraanList = mysqli_fetch_all($kewarganegaraanResult, MYSQLI_ASSOC);
 
 // Handle form submission
+$bookingId = null;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Data jadwal
     $idJadwal = $_POST['idJadwal'];
@@ -65,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sqlBooking = "INSERT INTO `booking` (`idKetua`, `idJadwal`, `tgl_pendakian`, `jumlah_anggota`, `total_pembayaran`) 
                    VALUES ('$idKetua', '$idJadwal', '$tglPendakian', '$jumlahAnggota', '$totalPembayaran')";
     $conn->query($sqlBooking);
-    echo "<div class='alert alert-success'>Registrasi berhasil!</div>";
+    $bookingId = $conn->insert_id; // Get the booking ID
 }
 ?>
 
@@ -79,7 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 <div class="container">
     <h2 class="mt-5">Form Registrasi Pendakian</h2>
-    <form action="" method="post">
+    <?php if ($bookingId): ?>
+        <div class="alert alert-success">
+            Registrasi berhasil! <br>
+            <a href="konfirmasibooking.php?bookingId=<?php echo $bookingId; ?>" class="btn btn-success">Konfirmasi Booking</a>
+        </div>
+    <?php else: ?>
+        <form action="" method="post">
+        <form action="" method="post">
         <input type="hidden" name="idJadwal" value="<?php echo $_GET['jadwalId']; ?>">
         <input type="hidden" name="tanggal" value="<?php echo $_GET['tanggal_mendaki']; ?>">
 
@@ -181,5 +189,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         anggotaSection.appendChild(newAnggota);
     });
 </script>
+        </form>
+    <?php endif; ?>
+</div>
 </body>
 </html>

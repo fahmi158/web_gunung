@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Des 2024 pada 17.15
+-- Waktu pembuatan: 16 Des 2024 pada 19.22
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.0.25
 
@@ -50,6 +50,15 @@ CREATE TABLE `anggota` (
   `no_tlp` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `anggota`
+--
+
+INSERT INTO `anggota` (`id_anggota`, `idKetua`, `idKewarganegaraan`, `nama`, `jenisKelamin`, `no_tlp`) VALUES
+(6, 6, 1, 'Dayat', 0, '0876543219'),
+(7, 7, 1, 'dayat 2', 0, '0876543219'),
+(8, 8, 1, 'ilyas', 0, '0876543219');
+
 -- --------------------------------------------------------
 
 --
@@ -64,6 +73,15 @@ CREATE TABLE `booking` (
   `jumlah_anggota` int(11) DEFAULT NULL,
   `total_pembayaran` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `booking`
+--
+
+INSERT INTO `booking` (`noPesanan`, `idKetua`, `idJadwal`, `tgl_pendakian`, `jumlah_anggota`, `total_pembayaran`) VALUES
+(12, 6, 21, '2024-12-16', 2, '20000.00'),
+(13, 7, 21, '2024-12-16', 2, '20000.00'),
+(14, 8, 22, '2024-12-17', 2, '20000.00');
 
 -- --------------------------------------------------------
 
@@ -131,6 +149,15 @@ CREATE TABLE `ketua_pendakian` (
   `kontak_darurat` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `ketua_pendakian`
+--
+
+INSERT INTO `ketua_pendakian` (`idKetua`, `idKewarganegaraan`, `noIdentitas`, `nama`, `jenisKelamin`, `Alamat`, `no_tlp`, `email`, `nama_kontak_darurat`, `kontak_darurat`) VALUES
+(6, 1, '367890715781', 'Fahmi', 0, 'jl. kauman', '0817964289', 'danugaming@gmail.com', 'Banu', '0816281217890'),
+(7, 1, '3567801765432', 'Fajar', 0, 'jl. belakang mesjid', '0817964289', 'Fajar@gmail.com', 'Banu', '0816281217890'),
+(8, 1, '367890715781', 'Danu Arta', 0, 'jl. besel', '08767678997', 'danugaming@gmail.com', 'Banu', '0816281217890');
+
 -- --------------------------------------------------------
 
 --
@@ -163,8 +190,31 @@ CREATE TABLE `pembayaran` (
   `noPesanan` int(11) DEFAULT NULL,
   `tgl_pembayaran` datetime DEFAULT NULL,
   `status_pembayaran` tinyint(1) DEFAULT NULL,
-  `metode_pembayaran` tinyint(1) DEFAULT NULL
+  `metode_pembayaran` tinyint(1) DEFAULT NULL,
+  `buktiPembayaran` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`kodePembayaran`, `idAdmin`, `noPesanan`, `tgl_pembayaran`, `status_pembayaran`, `metode_pembayaran`, `buktiPembayaran`) VALUES
+(1, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(2, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(3, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(4, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(5, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(6, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(7, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(8, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(9, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(10, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(11, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(12, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(13, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(14, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(15, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png'),
+(16, NULL, 12, '2024-12-16 00:00:00', NULL, 0, 'uploads/1.png');
 
 --
 -- Indexes for dumped tables
@@ -233,13 +283,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `noPesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `noPesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwal`
@@ -251,7 +301,7 @@ ALTER TABLE `jadwal`
 -- AUTO_INCREMENT untuk tabel `ketua_pendakian`
 --
 ALTER TABLE `ketua_pendakian`
-  MODIFY `idKetua` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idKetua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `kewarganegaraan`
@@ -263,7 +313,7 @@ ALTER TABLE `kewarganegaraan`
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `kodePembayaran` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `kodePembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
