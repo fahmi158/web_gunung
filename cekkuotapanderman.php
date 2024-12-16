@@ -139,7 +139,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                                 <td><?=$row["kuota"] ?></td>
                           <?php if($row['kuota']>0){?>
                             <td>
-                              <form action="booking.php" method="get">
+                              <form action="formregistrasi.php" method="get">
                                   <input type="hidden" value="<?= $row['namaGunung']?>" name="namagunung">
                                   <input type="hidden" value="<?= $row['idJadwal']?>" name="jadwalId">                   
 
