@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Des 2024 pada 16.03
+-- Waktu pembuatan: 16 Des 2024 pada 17.15
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.0.25
 
@@ -44,9 +44,10 @@ CREATE TABLE `admin` (
 CREATE TABLE `anggota` (
   `id_anggota` int(11) NOT NULL,
   `idKetua` int(11) DEFAULT NULL,
+  `idKewarganegaraan` int(11) NOT NULL,
   `nama` varchar(255) DEFAULT NULL,
-  `no_tip` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL
+  `jenisKelamin` tinyint(1) NOT NULL,
+  `no_tlp` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -119,9 +120,12 @@ INSERT INTO `jadwal` (`idJadwal`, `namaGunung`, `tanggal`, `kuota`) VALUES
 
 CREATE TABLE `ketua_pendakian` (
   `idKetua` int(11) NOT NULL,
-  `nik` int(11) DEFAULT NULL,
+  `idKewarganegaraan` int(11) NOT NULL,
+  `noIdentitas` varchar(255) DEFAULT NULL,
   `nama` varchar(255) DEFAULT NULL,
-  `no_tip` varchar(255) DEFAULT NULL,
+  `jenisKelamin` tinyint(1) NOT NULL,
+  `Alamat` text NOT NULL,
+  `no_tlp` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `nama_kontak_darurat` varchar(1024) DEFAULT NULL,
   `kontak_darurat` varchar(255) DEFAULT NULL
@@ -134,7 +138,7 @@ CREATE TABLE `ketua_pendakian` (
 --
 
 CREATE TABLE `kewarganegaraan` (
-  `id` int(11) NOT NULL,
+  `idKewarganegaraan` int(11) NOT NULL,
   `jenis` varchar(3) NOT NULL,
   `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -143,9 +147,9 @@ CREATE TABLE `kewarganegaraan` (
 -- Dumping data untuk tabel `kewarganegaraan`
 --
 
-INSERT INTO `kewarganegaraan` (`id`, `jenis`, `harga`) VALUES
-(1, 'WNI', 20000),
-(2, 'WNA', 200000);
+INSERT INTO `kewarganegaraan` (`idKewarganegaraan`, `jenis`, `harga`) VALUES
+(1, 'WNI', 10000),
+(2, 'WNA', 100000);
 
 -- --------------------------------------------------------
 
@@ -177,7 +181,8 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id_anggota`),
-  ADD KEY `idKetua` (`idKetua`);
+  ADD KEY `idKetua` (`idKetua`),
+  ADD KEY `idKewarganegaraan` (`idKewarganegaraan`);
 
 --
 -- Indeks untuk tabel `booking`
@@ -197,13 +202,14 @@ ALTER TABLE `jadwal`
 -- Indeks untuk tabel `ketua_pendakian`
 --
 ALTER TABLE `ketua_pendakian`
-  ADD PRIMARY KEY (`idKetua`);
+  ADD PRIMARY KEY (`idKetua`),
+  ADD KEY `idKewarganegaraan` (`idKewarganegaraan`);
 
 --
 -- Indeks untuk tabel `kewarganegaraan`
 --
 ALTER TABLE `kewarganegaraan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idKewarganegaraan`);
 
 --
 -- Indeks untuk tabel `pembayaran`
@@ -233,7 +239,7 @@ ALTER TABLE `anggota`
 -- AUTO_INCREMENT untuk tabel `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `noPesanan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `noPesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwal`
@@ -251,7 +257,7 @@ ALTER TABLE `ketua_pendakian`
 -- AUTO_INCREMENT untuk tabel `kewarganegaraan`
 --
 ALTER TABLE `kewarganegaraan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idKewarganegaraan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembayaran`
@@ -267,7 +273,8 @@ ALTER TABLE `pembayaran`
 -- Ketidakleluasaan untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
-  ADD CONSTRAINT `anggota_ibfk_1` FOREIGN KEY (`idKetua`) REFERENCES `ketua_pendakian` (`idKetua`);
+  ADD CONSTRAINT `anggota_ibfk_1` FOREIGN KEY (`idKetua`) REFERENCES `ketua_pendakian` (`idKetua`),
+  ADD CONSTRAINT `anggota_ibfk_2` FOREIGN KEY (`idKewarganegaraan`) REFERENCES `kewarganegaraan` (`idKewarganegaraan`);
 
 --
 -- Ketidakleluasaan untuk tabel `booking`
@@ -275,6 +282,12 @@ ALTER TABLE `anggota`
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`idKetua`) REFERENCES `ketua_pendakian` (`idKetua`),
   ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`idJadwal`) REFERENCES `jadwal` (`idJadwal`);
+
+--
+-- Ketidakleluasaan untuk tabel `ketua_pendakian`
+--
+ALTER TABLE `ketua_pendakian`
+  ADD CONSTRAINT `ketua_pendakian_ibfk_1` FOREIGN KEY (`idKewarganegaraan`) REFERENCES `kewarganegaraan` (`idKewarganegaraan`);
 
 --
 -- Ketidakleluasaan untuk tabel `pembayaran`

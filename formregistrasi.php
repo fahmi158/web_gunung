@@ -23,21 +23,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_query($conn, $query_ketua);
     $id_ketua = mysqli_insert_id($conn); // Get the id of the inserted Ketua Pendakian
 
-    // Insert Anggota Pendakian
+    // Fetch harga for Ketua
+    $query_harga_ketua = "SELECT harga FROM kewarganegaraan WHERE idKewarganegaraan = '$id_kewarganegaraan_ketua'";
+    $result_harga_ketua = mysqli_fetch_assoc(mysqli_query($conn, $query_harga_ketua));
+    $harga_ketua = $result_harga_ketua['harga'];
+
+    // Insert Anggota Pendakian and calculate total payment for each member
+    $total_pembayaran = $harga_ketua; // Start with the Ketua's price
     $anggota_count = count($anggota);
+
     for ($i = 0; $i < $anggota_count; $i++) {
         $nama_anggota = $anggota[$i];
         $id_kewarganegaraan = $id_kewarganegaraan_anggota[$i];
         $jenis_kelamin = $jenis_kelamin_anggota[$i];
         $no_tlp = $no_tlp_anggota[$i];
+
+        // Fetch harga for Anggota
+        $query_harga_anggota = "SELECT harga FROM kewarganegaraan WHERE idKewarganegaraan = '$id_kewarganegaraan'";
+        $result_harga_anggota = mysqli_fetch_assoc(mysqli_query($conn, $query_harga_anggota));
+        $harga_anggota = $result_harga_anggota['harga'];
+
+        // Insert Anggota
         $query_anggota = "INSERT INTO anggota (nama, id_kewarganegaraan, jenis_kelamin, no_tlp, id_ketua_pendakian)
                           VALUES ('$nama_anggota', '$id_kewarganegaraan', '$jenis_kelamin', '$no_tlp', '$id_ketua')";
         mysqli_query($conn, $query_anggota);
+
+        // Add anggota's price to total payment
+        $total_pembayaran += $harga_anggota;
     }
 
     // Insert Booking and get noPesanan
     $jumlah_anggota = $anggota_count + 1;  // Including Ketua
-    $total_pembayaran = $jumlah_anggota * 50000;  // Example cost per person
 
     $query_booking = "INSERT INTO booking (idJadwal, tgl_pendakian, jumlah_anggota, total_pembayaran)
                       VALUES ('$idjadwal', '" . $result['tanggal'] . "', '$jumlah_anggota', '$total_pembayaran')";
@@ -57,8 +73,6 @@ $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
 $query_kewarganegaraan = "SELECT idKewarganegaraan, jenis FROM kewarganegaraan";
 $result_kewarganegaraan = mysqli_query($conn, $query_kewarganegaraan);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +100,6 @@ $result_kewarganegaraan = mysqli_query($conn, $query_kewarganegaraan);
 </head>
 
 <body id="page-top">
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
@@ -326,7 +339,5 @@ $result_kewarganegaraan = mysqli_query($conn, $query_kewarganegaraan);
             anggotaSection.appendChild(newAnggota);
         }
     </script>
-
 </body>
-
 </html>
