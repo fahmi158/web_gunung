@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Des 2024 pada 07.07
+-- Waktu pembuatan: 14 Des 2024 pada 16.03
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.0.25
 
@@ -130,6 +130,26 @@ CREATE TABLE `ketua_pendakian` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `kewarganegaraan`
+--
+
+CREATE TABLE `kewarganegaraan` (
+  `id` int(11) NOT NULL,
+  `jenis` varchar(3) NOT NULL,
+  `harga` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `kewarganegaraan`
+--
+
+INSERT INTO `kewarganegaraan` (`id`, `jenis`, `harga`) VALUES
+(1, 'WNI', 20000),
+(2, 'WNA', 200000);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `pembayaran`
 --
 
@@ -180,6 +200,12 @@ ALTER TABLE `ketua_pendakian`
   ADD PRIMARY KEY (`idKetua`);
 
 --
+-- Indeks untuk tabel `kewarganegaraan`
+--
+ALTER TABLE `kewarganegaraan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
@@ -220,6 +246,12 @@ ALTER TABLE `jadwal`
 --
 ALTER TABLE `ketua_pendakian`
   MODIFY `idKetua` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `kewarganegaraan`
+--
+ALTER TABLE `kewarganegaraan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembayaran`

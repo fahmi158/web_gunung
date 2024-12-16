@@ -1,9 +1,36 @@
 <?php
 require 'server/config.php';
 
-// Mengambil data dari tabel jadwal
-$sql = "SELECT `idJadwal`, `namaGunung`, `tanggal`, `kuota` FROM `jadwal` WHERE 1";
-$result = $conn->query($sql);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $gunung = $_POST['gunung'];
+    $tanggal_naik = $_POST['tanggal_naik'];
+    $jumlah_pendaki = (int)$_POST['jumlah'];
+
+    // Query untuk mendapatkan data kuota
+    $query = "SELECT idJadwal, namaGunung, tanggal, kuota FROM jadwal WHERE namaGunung = ? AND tanggal = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ss', $gunung, $tanggal_naik);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $data = $result->fetch_assoc();
+        $kuota_tersedia = $data['kuota'];
+
+        if ($jumlah_pendaki <= $kuota_tersedia) {
+            $pesan = "Kuota tersedia: " . ($kuota_tersedia - $jumlah_pendaki) . " orang.";
+        } else {
+            $pesan = "Kuota tidak mencukupi. Kuota tersisa: " . $kuota_tersedia . " orang.";
+        }
+    } else {
+        $pesan = "Tidak ada data jadwal untuk tanggal dan gunung yang dipilih.";
+    }
+
+    $stmt->close();
+    $conn->close();
+} else {
+    $pesan = "Harap isi form terlebih dahulu.";
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,9 +47,9 @@ $result = $conn->query($sql);
     <!-- Custom fonts for this template -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
     <link href="css/agency1.css" rel="stylesheet">
 </head>
@@ -38,12 +65,12 @@ $result = $conn->query($sql);
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ml-auto">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#service">Melayani</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#portfolio">Gunung</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#about">Registrasi</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php#service">Melayani</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php#portfolio">Gunung</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php#about">Registrasi</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Persyaratan</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#team">Team</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#contact">Hubungi</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php#team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php#contact">Hubungi</a></li>
                 </ul>
             </div>
         </div>
@@ -54,68 +81,41 @@ $result = $conn->query($sql);
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">Cek Kuota Pendakian Gunung Butak</h2>
-                    <h3 class="section-subheading text-muted" style="color: #fff;">Pilih tanggal mendaki dan lihat apakah kuota sudah penuh.</h3>
+                    <h2 class="section-heading text-uppercase">Cek Kuota Pendakian</h2>
+                    <h3 class="section-subheading text-muted" style="color: #fff;">
+                        <?php if (isset($pesan)) echo $pesan; ?>
+                    </h3>
                 </div>
             </div>
-            <form>
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1" style="color: white;">Pilih Bulan</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Januari</option>
-                            <option>Februari</option>
-                            <option>Maret</option>
-                            <option>April</option>
-                            <option>Mei</option>
-                            <option>Juni</option>
-                            <option>Juli</option>
-                            <option>Agustus</option>
-                            <option>September</option>
-                            <option>Oktober</option>
-                            <option>November</option>
-                            <option>Desember</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1" style="color: white;">Pilih Tahun</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>2024</option>
-                            <option>2025</option>
-                            <option>2026</option>
-                        </select>
-                    </div>
+            <br />
+
+            <!-- Form for checking mountain quota -->
+            <form action="" method="POST" class="form-horizontal" style="color: white;">
+                <div class="form-group">
+                    <label for="gunung">Pilih Gunung</label>
+                    <select class="form-control" id="gunung" name="gunung" required>
+                        <option value="Gunung Butak">Gunung Butak</option>
+                        <option value="Gunung Panderman">Gunung Panderman</option>
+                    </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="jumlah">Jumlah Pendaki</label>
+                    <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" placeholder="Masukkan jumlah pendaki" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tanggal_naik">Tanggal Naik</label>
+                    <input type="date" class="form-control" id="tanggal_naik" name="tanggal_naik" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tanggal_turun">Tanggal Turun</label>
+                    <input type="date" class="form-control" id="tanggal_turun" name="tanggal_turun" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Cek Kuota</button>
             </form>
-            <br /><br />
-
-            <!-- Table displaying the available schedules -->
-            <table class="table table-hover" style="color: white; text-align: center;">
-                <thead>
-                    <tr>
-                        <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
-                        <th scope="col" style="background-color: cadetblue; color: black;">Kuota Pendaki</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    // Menampilkan data dari tabel jadwal
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>
-                                <td>" . $row["tanggal"] . "</td>
-                                <td>" . $row["kuota"] . "</td>
-                            </tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='2'>Tidak ada data yang ditemukan</td></tr>";
-                    }
-
-                    // Menutup koneksi
-                    $conn->close();
-                    ?>
-                </tbody>
-            </table>
         </div>
     </section>
 
@@ -124,7 +124,7 @@ $result = $conn->query($sql);
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; Mountain 2018</span>
+                    <span class="copyright">Copyright &copy; Mountain 2024</span>
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
