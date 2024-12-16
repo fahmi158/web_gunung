@@ -1,7 +1,6 @@
 <?php
 require 'server/config.php';
 
-<<<<<<< HEAD
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $gunung = $_POST['gunung'];
     $tanggal_naik = $_POST['tanggal_naik'];
@@ -32,22 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     $pesan = "Harap isi form terlebih dahulu.";
 }
-=======
-// Mengambil data dari tabel jadwal
-if($_SERVER['REQUEST_METHOD']=='POST'){
-    $tglstart=$_POST['tanggalawal'];
-    $tglend=$_POST['tanggalakhir'];
-    //echo $tglstart;
-  
-    $sql = "SELECT * FROM `jadwal` 
-     WHERE (tanggal BETWEEN '$tglstart' AND '$tglend')
-     AND  ( namaGunung = 'Buthak')
-    ";
-  
-    $result = $conn->query($sql);
-    $res2=mysqli_fetch_all($result,MYSQLI_ASSOC);
-  }
->>>>>>> 125d6027f97800de616899dff175dab32d9cdc75
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +87,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                     </h3>
                 </div>
             </div>
-<<<<<<< HEAD
             <br />
 
             <!-- Form for checking mountain quota -->
@@ -134,72 +116,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
                 <button type="submit" class="btn btn-primary">Cek Kuota</button>
             </form>
-=======
-
-            <form ation="" method="post">
-            <div class="d-flex flex-row">
-              <div class="m-2">
-                  <label for="tanggalawal" class="form-label"></label>
-                  <input type="date" class="form-control" placeholder="YYYY-MM-DD" id="tanggalawal" name="tanggalawal" aria-describedby="tanggalawalhelp" value="<?php if(isset($_POST['tanggalawal'])){echo $_POST['tanggalawal'];}?>">
-                  <div id="tanggalawalhelp" class="form-text"></div>
-              </div>
-          
-              <div class="m-2">
-                  <label for="tanggalakhir" class="form-label"></label>
-                  <input type="date" class="form-control" placeholder="YYYY-MM-DD" id="tanggalakhir" name="tanggalakhir" aria-describedby="tanggalakhirhelp" value="<?php if(isset($_POST['tanggalakhir'])){echo $_POST['tanggalakhir'];}?>">
-                  <div id="tanggalakhirhelp" class="form-text"></div>
-              </div>
-              <div class="m-2">
-                  <button type="submit" class="btn btn-primary mt-4 m-2">lihat kuota</button>
-              </div>
-          </div>
-            </form>
-            <br /><br />
-
-            <!-- Table displaying the available schedules -->
-            <table class="table table-hover" style="color: white; text-align: center;">
-                <thead>
-                    <tr>
-                        <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
-                        <th scope="col" style="background-color: cadetblue; color: black;">gunung</th>
-                        <th scope="col" style="background-color: cadetblue; color: black;">Kuota Pendaki</th>
-                        <th scope="col" style="background-color: cadetblue; color: black;">pilih kuota</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    // Menampilkan data dari tabel jadwal
-                    if(count($res2) > 0) {
-                        foreach ($res2 as $row) {?>
-                            <tr>
-                                <td><?= $row["tanggal"]?></td>
-                                <td><?=$row["namaGunung"] ?></td>
-                                <td><?=$row["kuota"] ?></td>
-                          <?php if($row['kuota']>0){?>
-                                <td>
-                                <form action="formregistrasi.php" method="get">
-                                  <input type="hidden" value="<?= $row['namaGunung']?>" name="namagunung">
-                                  <input type="hidden" value="<?= $row['idJadwal']?>" name="jadwalId">                   
-                                  <button type="submit" class="btn btn-secondary">ambil kuota</button>
-                                </form>
-                                </td>
-        <?php 
-                            }else{
-                              echo "<td>kosong</td>";
-                            }
-                                
-                           echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='2'>Tidak ada data yang ditemukan</td></tr>";
-                    }
-
-                    // Menutup koneksi
-                    $conn->close();
-                    ?>
-                </tbody>
-            </table>
->>>>>>> 125d6027f97800de616899dff175dab32d9cdc75
         </div>
     </section>
 
