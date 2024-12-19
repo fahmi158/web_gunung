@@ -91,7 +91,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Cek Kuota Pendakian Gunung Panderman</h2>
+            <h2 class="section-heading text-uppercase">Cek Kuota Pendakian Gunung Buthak</h2>
             <h3 class="section-subheading text-muted" style="color: #fff;">Pilih tanggal mendaki dan lihat apakah kuota sudah penuh.</h3>
           </div>
         </div>
@@ -138,14 +138,19 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                                 <td><?=$row["namaGunung"] ?></td>
                                 <td><?=$row["kuota"] ?></td>
                           <?php if($row['kuota']>0){?>
-                                <td>
-                                <form action="formregistrasi.php" method="get">
-                                    <input type="hidden" value="<?= $row['namaGunung']?>" name="namagunung">
-                                    <input type="hidden" value="<?= $row['idJadwal']?>" name="jadwalId">                   
-                                    <button type="submit" class="btn btn-secondary">ambil kuota</button>
-                                </form>
-                                </td>
-            <?php 
+                            <td>
+                              <form action="formregistrasi.php" method="get">
+                                  <input type="hidden" value="<?= $row['namaGunung']?>" name="namagunung">
+                                  <input type="hidden" value="<?= $row['idJadwal']?>" name="jadwalId">                   
+
+                                  <!-- Pass the 'tanggal' value (date of trekking) to booking.php -->
+                                  <input type="hidden" value="<?= $row['tanggal'] ?>" name="tanggal_mendaki"> 
+
+                                  <button type="submit" class="btn btn-secondary">ambil kuota</button>
+                              </form>
+                            </td>
+
+        <?php 
                             }else{
                               echo "<td>kosong</td>";
                             }
