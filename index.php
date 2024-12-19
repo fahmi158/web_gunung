@@ -23,6 +23,9 @@
     <!-- Custom styles for this template -->
     <link href="css/agency.min.css" rel="stylesheet">
 
+    <!-- icon -->
+    <link rel="icon" href="img/logoyellow.png">
+
   </head>
 
   <body id="page-top">
@@ -113,12 +116,12 @@
     <section class="bg-light" id="portfolio">
       <div class="container">
         <div class="row justify-content-center"> <!-- Tambahkan kelas justify-content-center -->
-          <div class="col-lg-12 text-center">
+          <div class="col-lg-14 text-center">
             <h2 class="section-heading text-uppercase">Jenis Gunung</h2>
           </div>
         </div>
         <div class="row justify-content-center"> <!-- Tambahkan kelas justify-content-center -->
-          <div class="col-md-4 col-sm-6 portfolio-item">
+          <div class="col-md-4 col-md-6 portfolio-item">
             <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
               <div class="portfolio-hover">
                 <div class="portfolio-hover-content">
@@ -132,7 +135,7 @@
               <p class="text-muted">Gn Butak, Dusun Toyomerto, Desa Pesanggrahan, Kecamatan Batu, Kota Batu Kota Batu, Jawa Timur</p>
             </div>
           </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
+          <div class="col-md-4 col-md-6 portfolio-item">
             <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
               <div class="portfolio-hover">
                 <div class="portfolio-hover-content">

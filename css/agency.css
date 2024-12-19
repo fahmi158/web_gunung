@@ -650,6 +650,66 @@ section#contact :-ms-input-placeholder {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+section#login {
+  background-color: #212529;
+  background-image: url("../img/vector-gunung.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image-width:100%;
+}
+
+section#login .section-heading {
+  color: #fff;
+}
+
+section#login .form-group {
+  margin-bottom: 25px;
+}
+
+section#login .form-group input,
+section#login .form-group textarea {
+  padding: 20px;
+}
+
+section#login .form-group input.form-control {
+  height: auto;
+}
+
+section#login .form-group textarea.form-control {
+  height: 248px;
+}
+
+section#login .form-control:focus {
+  border-color: #fed136;
+  box-shadow: none;
+}
+
+section#login ::-webkit-input-placeholder {
+  font-weight: 700;
+  color: #ced4da;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+section#login :-moz-placeholder {
+  font-weight: 700;
+  color: #ced4da;
+  /* Firefox 18- */
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+section#login ::-moz-placeholder {
+  font-weight: 700;
+  color: #ced4da;
+  /* Firefox 19+ */
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+section#login :-ms-input-placeholder {
+  font-weight: 700;
+  color: #ced4da;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 footer {
   padding: 25px 0;
   text-align: center;
