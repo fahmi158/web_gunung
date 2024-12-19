@@ -5,7 +5,24 @@ if($_SESSION['akses'] != 'admin'){
   echo "<script> window.location.href='../admin/login.php'</script>";
 }
 
+function getAllJadwal(){
+  $query="SELECT * FROM jadwal";
+  global $conn;
+  $result=mysqli_query($conn,$query);
+  return mysqli_fetch_all($result,MYSQLI_ASSOC);
+}
 
+function addJadwal($tanggal,$namagunung,$kuota){
+  $query="INSERT INTO jadwal (tanggal,namaGunung,kuota) VALUE ('$tanggal','$namagunung','$kuota')";
+  global $conn;
+  mysqli_query($conn,$query);
+}
+
+function deleteById($id){
+  $query="DELETE FROM jadwal WHERE idJadwal = '$id'";
+  global $conn;
+  mysqli_query($conn,$query);
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,9 +33,9 @@ if($_SESSION['akses'] != 'admin'){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content=`"">
 
-    <title>Admin</title>
+    <title>Admin | jadwal</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,19 +67,16 @@ if($_SESSION['akses'] != 'admin'){
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#service">Melayani</a>
+              <a class="nav-link js-scroll-trigger active"  href="index.php">Jadwal</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Gunung</a>
+              <a class="nav-link js-scroll-trigger" href="harga.php">Harga</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Registrasi</a>
+              <a class="nav-link js-scroll-trigger" href="pembayaran.php">Pembayaran</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#">Persyaratan</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#team">Team</a>
+              <a class="nav-link js-scroll-trigger" href="laporan.php">Laporan Pemasukan</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
@@ -76,19 +90,127 @@ if($_SESSION['akses'] != 'admin'){
     <header class="masthead">
       <div class="container">
         <div class="intro-text">
-          <div class="intro-lead-in">Welcome To Our Mountain !</div>
-          <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
-          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+          <div class="intro-lead-in">Selamat datang Admin!</div>
+         
         </div>
       </div>
     </header>
 
+
+    <div class="container">
+         <!-- Button trigger modal -->
+         <section id="contact" >
+        <div class="m-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+          Tambah Jadwal
+        </button>
+        </div>
+      <table class="table table-hover" style="color: white; text-align: center;">
+            <thead>
+              <tr>
+                <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
+                <th scope="col" style="background-color: cadetblue; color: black;">Gunung</th>
+                <th scope="col" style="background-color: cadetblue; color: black;">Kuota pendaki</th>
+                <th scope="col" style="background-color: cadetblue; color: black;">pilih kuota</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+                      // Menampilkan data dari tabel jadwal
+                      
+                          foreach (getAllJadwal() as $row) {?>
+                              <tr>
+                                  <td><?= $row["tanggal"]?></td>
+                                  <td><?=$row["namaGunung"] ?></td>
+                                  <td><?=$row["kuota"] ?></td>
+                            <?php if($row['kuota']>0){?>
+                              <td>
+                                <form action="" method="POST" onsubmit="return confirm('hapus data?');">
+
+                                    <input type="hidden" value="<?= $row['idJadwal']?>" name="id">                   
+                                    <input type="hidden" value="hapus" name="action">                   
+  
+                                    <button type="submit" class="btn btn-danger">hapus jadwal</button>
+                                </form>
+                              </td>
+  
+          <?php 
+                              }else{
+                                echo "<td>kosong</td>";
+                              }
+                                  
+                             echo "</tr>";
+                          }
+  
+                      
+                      ?>
+            </tbody>
+          </table>
+      </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <form action="index.php" method="POST"> 
+            <div class="form-group">
+              <label for="formGroupExampleInput">Tanggal</label>
+              <input type="date" class="form-control" name="tanggal" id="formGroupExampleInput" placeholder="Example input placeholder">
+            </div>
+            <div class="form-group">
+              <label for="namagunung">Gunung</label>
+              <select name="namagunung" id="namagunung" class="form-control" aria-placeholder="pilih Gunung">
+                <option value="Buthak">Buthak</option>
+                <option value="Panderman">Panderman</option>
+              </select>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Kuota</label>
+              <input type="number" class="form-control" name="kuota" id="formGroupExampleInput2" placeholder="Masukkan kuota">
+            </div>
+            <input type="hidden" name="action" value="tambah">
+            <button type="submit" class="btn btn-success">Tambah</button>
+          </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+            <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
     
 
-   
-    
+    <?php 
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+      if($_POST['action']=='tambah'){
+        $tgl=$_POST['tanggal'];
+        $gng=$_POST['namagunung'];
+        $kuota=$_POST['kuota'];
+        if(addJadwal($tgl,$gng,$kuota)){
+        unset($_POST);
+         echo "<script>alert('jadwal gagal di tambhakan');</script>";
+        }else{
+          echo "<script>alert('jadwal berhsil di tambhakan');</script>";
+        }
+      }else if($_POST['action']=='hapus'){
+        if(deleteById($_POST['id'])){
+          echo "<script>alert('jadwal gagal di hapus');</script>";
+        }else{
+          echo "<script>alert('jadwal berhsil di hapus');</script>";
+        }
+      }
 
-    
+
+    }
+    ?>
 
     <!-- Footer -->
     <footer>
