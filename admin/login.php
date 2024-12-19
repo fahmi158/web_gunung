@@ -1,23 +1,31 @@
 <?php 
 require '../server/config.php';
 session_start();
-if(isset($_SESSION)){
+if((isset($_SESSION['akses'])) AND ($_SESSION['akses']=='admin')){
   echo "<script> window.location.href='../admin/index.php'</script>";
 }
 
 $show='none';
 
-function login($username,$password){
-  $sql = "SELECT * FROM user WHERE username = '$username' ";
+function loginverify($username,$password){
+
+  $sql = "SELECT * FROM admin WHERE username = '$username' ";
   global $conn;
   $result = mysqli_query($conn,$sql);
-  $data=mysqli_fetch_assoc($result);
-  if($data['password']==md5($password) ){
-    header("location:http://localhost:80/web_gunung/admin/index.php");
-    echo 'betul';
+  $data=mysqli_fetch_array($result,MYSQLI_ASSOC);
+  //var_dump($data);
+
+  if($username==$data['username'] and $data['password']==MD5($password) ){
+    //header("location:http://localhost:80/web_gunung/admin/index.php");
+   
+
+    $ver['status']=true;
+    $ver['message']='';
+    return $ver;
   }else{
-    echo 'salah';
-    return "Password salah";
+    $ver['status']=false;
+    $ver['message']='Password atau Username salah, silahkan masukkan ya benar.';
+    return $ver;
   }
 }
 ?>
@@ -97,7 +105,21 @@ function login($username,$password){
       </div>
     </header> -->
 
-    
+    <?php 
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+      //$_SESSION['akses']=$_POST['username'];
+      if(loginverify($_POST['username'],$_POST['password'])['status']){
+        $_SESSION['akses']=$_POST['username'];
+        //header('location:http://localhost:80/web_gunung/admin/index.php');
+        echo "<script> window.location.href='../admin/index.php'</script>";
+      }else{
+        $message=loginverify($_POST['username'],$_POST['password'])['message'];
+        //echo $message;
+        $show='block';
+      }
+    }
+    //var_dump($_SESSION);
+    ?>  
 
     <!-- form login -->
     <section id="login">
@@ -110,32 +132,32 @@ function login($username,$password){
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <form   action="../admin/index.php" method="POST">
+            <form   action="" method="POST">
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Username*"  name="username">
+                    <input class="form-control" type="text" placeholder="Username*"  name="username" id="username">
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
-                    <input class="form-control"  type="text" placeholder="Password *"  name="password">
+                    <input class="form-control"  type="text" placeholder="Password *"  name="password" id="username">
                     <p class="help-block text-danger"></p>
                   </div>
-                  <div class="form-group col-sm-6">
+                  <div class="form-group col-sm-6 text-center">
                     <div class="alert alert-danger" role="alert" style="display: <?= $show?>;">
                       <?php 
                       if(isset($message)){ 
                         echo $message;
-                        $show='block';
+                        
                         }?>
                     </div>
                   </div>
                 </div>
                 
                 <div class="col-lg-12 text-center">
-                  
                   <button  class="btn btn-primary btn-xl text-uppercase" type="submit">Login</button>
                 </div>
+                
               </div>
             </form>
           </div>
@@ -143,15 +165,7 @@ function login($username,$password){
       </div>
     </section>
 
-    <?php 
-    if($_SERVER['REQUEST_METHOD']=='POST'){
-      $_SESSION['sesi']=$_POST['username'];
-      if(login($_POST['username'],$_POST['password']) ['']){
-        header('location:../admin/index.php');
-        $show='block';
-      }
-    }
-    ?>
+
    
     
 
