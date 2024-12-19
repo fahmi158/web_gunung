@@ -1,7 +1,7 @@
 <?php 
 require '../server/config.php';
 session_start();
-if(isset($_SESSION['sesi'])){
+if(isset($_SESSION)){
   echo "<script> window.location.href='../admin/index.php'</script>";
 }
 
@@ -146,8 +146,9 @@ function login($username,$password){
     <?php 
     if($_SERVER['REQUEST_METHOD']=='POST'){
       $_SESSION['sesi']=$_POST['username'];
-      if($message=login($_POST['username'],$_POST['password'])){
+      if(login($_POST['username'],$_POST['password']) ['']){
         header('location:../admin/index.php');
+        $show='block';
       }
     }
     ?>
