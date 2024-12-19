@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Des 2024 pada 19.22
--- Versi server: 10.4.27-MariaDB
--- Versi PHP: 8.0.25
+-- Generation Time: Dec 19, 2024 at 03:48 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,21 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
   `idAdmin` int(11) NOT NULL,
-  `nama` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
   `no_tlp` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`idAdmin`, `username`, `no_tlp`, `email`, `password`) VALUES
+(1, 'admin', '08580987234', 'someone@email.com', '21232f297a57a5a743894a0e4a801fc3');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `anggota`
+-- Table structure for table `anggota`
 --
 
 CREATE TABLE `anggota` (
@@ -51,7 +58,7 @@ CREATE TABLE `anggota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `anggota`
+-- Dumping data for table `anggota`
 --
 
 INSERT INTO `anggota` (`id_anggota`, `idKetua`, `idKewarganegaraan`, `nama`, `jenisKelamin`, `no_tlp`) VALUES
@@ -62,7 +69,7 @@ INSERT INTO `anggota` (`id_anggota`, `idKetua`, `idKewarganegaraan`, `nama`, `je
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `booking`
+-- Table structure for table `booking`
 --
 
 CREATE TABLE `booking` (
@@ -75,18 +82,18 @@ CREATE TABLE `booking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `booking`
+-- Dumping data for table `booking`
 --
 
 INSERT INTO `booking` (`noPesanan`, `idKetua`, `idJadwal`, `tgl_pendakian`, `jumlah_anggota`, `total_pembayaran`) VALUES
-(12, 6, 21, '2024-12-16', 2, '20000.00'),
-(13, 7, 21, '2024-12-16', 2, '20000.00'),
-(14, 8, 22, '2024-12-17', 2, '20000.00');
+(12, 6, 21, '2024-12-16', 2, 20000.00),
+(13, 7, 21, '2024-12-16', 2, 20000.00),
+(14, 8, 22, '2024-12-17', 2, 20000.00);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jadwal`
+-- Table structure for table `jadwal`
 --
 
 CREATE TABLE `jadwal` (
@@ -97,7 +104,7 @@ CREATE TABLE `jadwal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `jadwal`
+-- Dumping data for table `jadwal`
 --
 
 INSERT INTO `jadwal` (`idJadwal`, `namaGunung`, `tanggal`, `kuota`) VALUES
@@ -133,7 +140,7 @@ INSERT INTO `jadwal` (`idJadwal`, `namaGunung`, `tanggal`, `kuota`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ketua_pendakian`
+-- Table structure for table `ketua_pendakian`
 --
 
 CREATE TABLE `ketua_pendakian` (
@@ -150,7 +157,7 @@ CREATE TABLE `ketua_pendakian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `ketua_pendakian`
+-- Dumping data for table `ketua_pendakian`
 --
 
 INSERT INTO `ketua_pendakian` (`idKetua`, `idKewarganegaraan`, `noIdentitas`, `nama`, `jenisKelamin`, `Alamat`, `no_tlp`, `email`, `nama_kontak_darurat`, `kontak_darurat`) VALUES
@@ -161,7 +168,7 @@ INSERT INTO `ketua_pendakian` (`idKetua`, `idKewarganegaraan`, `noIdentitas`, `n
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kewarganegaraan`
+-- Table structure for table `kewarganegaraan`
 --
 
 CREATE TABLE `kewarganegaraan` (
@@ -171,7 +178,7 @@ CREATE TABLE `kewarganegaraan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `kewarganegaraan`
+-- Dumping data for table `kewarganegaraan`
 --
 
 INSERT INTO `kewarganegaraan` (`idKewarganegaraan`, `jenis`, `harga`) VALUES
@@ -181,7 +188,7 @@ INSERT INTO `kewarganegaraan` (`idKewarganegaraan`, `jenis`, `harga`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pembayaran`
+-- Table structure for table `pembayaran`
 --
 
 CREATE TABLE `pembayaran` (
@@ -195,7 +202,7 @@ CREATE TABLE `pembayaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `pembayaran`
+-- Dumping data for table `pembayaran`
 --
 
 INSERT INTO `pembayaran` (`kodePembayaran`, `idAdmin`, `noPesanan`, `tgl_pembayaran`, `status_pembayaran`, `metode_pembayaran`, `buktiPembayaran`) VALUES
@@ -221,13 +228,13 @@ INSERT INTO `pembayaran` (`kodePembayaran`, `idAdmin`, `noPesanan`, `tgl_pembaya
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`idAdmin`);
 
 --
--- Indeks untuk tabel `anggota`
+-- Indexes for table `anggota`
 --
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id_anggota`),
@@ -235,7 +242,7 @@ ALTER TABLE `anggota`
   ADD KEY `idKewarganegaraan` (`idKewarganegaraan`);
 
 --
--- Indeks untuk tabel `booking`
+-- Indexes for table `booking`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`noPesanan`),
@@ -243,26 +250,26 @@ ALTER TABLE `booking`
   ADD KEY `idJadwal` (`idJadwal`);
 
 --
--- Indeks untuk tabel `jadwal`
+-- Indexes for table `jadwal`
 --
 ALTER TABLE `jadwal`
   ADD PRIMARY KEY (`idJadwal`);
 
 --
--- Indeks untuk tabel `ketua_pendakian`
+-- Indexes for table `ketua_pendakian`
 --
 ALTER TABLE `ketua_pendakian`
   ADD PRIMARY KEY (`idKetua`),
   ADD KEY `idKewarganegaraan` (`idKewarganegaraan`);
 
 --
--- Indeks untuk tabel `kewarganegaraan`
+-- Indexes for table `kewarganegaraan`
 --
 ALTER TABLE `kewarganegaraan`
   ADD PRIMARY KEY (`idKewarganegaraan`);
 
 --
--- Indeks untuk tabel `pembayaran`
+-- Indexes for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`kodePembayaran`),
@@ -270,77 +277,77 @@ ALTER TABLE `pembayaran`
   ADD KEY `noPesanan` (`noPesanan`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `idAdmin` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAdmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `anggota`
+-- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
   MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `booking`
+-- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
   MODIFY `noPesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `jadwal`
+-- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
   MODIFY `idJadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT untuk tabel `ketua_pendakian`
+-- AUTO_INCREMENT for table `ketua_pendakian`
 --
 ALTER TABLE `ketua_pendakian`
   MODIFY `idKetua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `kewarganegaraan`
+-- AUTO_INCREMENT for table `kewarganegaraan`
 --
 ALTER TABLE `kewarganegaraan`
   MODIFY `idKewarganegaraan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `pembayaran`
+-- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   MODIFY `kodePembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `anggota`
+-- Constraints for table `anggota`
 --
 ALTER TABLE `anggota`
   ADD CONSTRAINT `anggota_ibfk_1` FOREIGN KEY (`idKetua`) REFERENCES `ketua_pendakian` (`idKetua`),
   ADD CONSTRAINT `anggota_ibfk_2` FOREIGN KEY (`idKewarganegaraan`) REFERENCES `kewarganegaraan` (`idKewarganegaraan`);
 
 --
--- Ketidakleluasaan untuk tabel `booking`
+-- Constraints for table `booking`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`idKetua`) REFERENCES `ketua_pendakian` (`idKetua`),
   ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`idJadwal`) REFERENCES `jadwal` (`idJadwal`);
 
 --
--- Ketidakleluasaan untuk tabel `ketua_pendakian`
+-- Constraints for table `ketua_pendakian`
 --
 ALTER TABLE `ketua_pendakian`
   ADD CONSTRAINT `ketua_pendakian_ibfk_1` FOREIGN KEY (`idKewarganegaraan`) REFERENCES `kewarganegaraan` (`idKewarganegaraan`);
 
 --
--- Ketidakleluasaan untuk tabel `pembayaran`
+-- Constraints for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`idAdmin`) REFERENCES `admin` (`idAdmin`),
