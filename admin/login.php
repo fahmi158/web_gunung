@@ -140,7 +140,7 @@ function loginverify($username,$password){
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
-                    <input class="form-control"  type="text" placeholder="Password *"  name="password" id="username">
+                    <input class="form-control"  type="password" placeholder="Password *"  name="password" id="username">
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group col-sm-6 text-center">

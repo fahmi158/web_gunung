@@ -87,14 +87,14 @@ function deleteById($id){
     </nav>
 
     <!-- Header -->
-    <header class="masthead">
+    <!-- <header class="masthead">
       <div class="container">
         <div class="intro-text">
           <div class="intro-lead-in">Selamat datang Admin!</div>
          
         </div>
       </div>
-    </header>
+    </header> -->
 
 
     <div class="container">
@@ -125,13 +125,19 @@ function deleteById($id){
                                   <td><?=$row["kuota"] ?></td>
                             <?php if($row['kuota']>0){?>
                               <td>
-                                <form action="" method="POST" onsubmit="return confirm('hapus data?');">
-
+                                <div class="d-flex m-2">
+                                  <form action="update_jadwal.php" method="get">
                                     <input type="hidden" value="<?= $row['idJadwal']?>" name="id">                   
-                                    <input type="hidden" value="hapus" name="action">                   
+                                    <button type="submit" class="btn btn-warning">update </button>
+                                  </form>
+                                  <form action="" method="POST" onsubmit="return confirm('hapus data?');">
   
-                                    <button type="submit" class="btn btn-danger">hapus jadwal</button>
-                                </form>
+                                      <input type="hidden" value="<?= $row['idJadwal']?>" name="id">                   
+                                      <input type="hidden" value="hapus" name="action">                   
+    
+                                      <button type="submit" class="btn btn-danger">Hapus </button>
+                                  </form>
+                                </div>
                               </td>
   
           <?php 
