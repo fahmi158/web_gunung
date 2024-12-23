@@ -5,6 +5,13 @@ if($_SESSION['akses'] != 'admin'){
   echo "<script> window.location.href='../admin/login.php'</script>";
 }
 
+function getAllKwn(){
+  $query="SELECT * FROM kewarganegaraan";
+  global $conn;
+  $result = mysqli_query($conn,$query);
+  return mysqli_fetch_all($result,MYSQLI_ASSOC);
+}
+
 
 
 ?>
@@ -71,54 +78,45 @@ if($_SESSION['akses'] != 'admin'){
     </nav>
 
     <!-- Header -->
-    <header class="masthead">
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in">Selamat datang Admin!</div>
-         
-        </div>
-      </div>
-    </header>
+    
 
 
     <div class="container">
 
-      <section>
+      <section id="contact">
       <table class="table table-hover" style="color: white; text-align: center;">
             <thead>
               <tr>
-                <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
-                <th scope="col" style="background-color: cadetblue; color: black;">Gunung</th>
-                <th scope="col" style="background-color: cadetblue; color: black;">Kuota pendaki</th>
+                <th scope="col" style="background-color: cadetblue; color: black;">no</th>
+                <th scope="col" style="background-color: cadetblue; color: black;">kewarganegaraan</th>
+                <th scope="col" style="background-color: cadetblue; color: black;">Harga Tiket Pengunjung</th>
                 <th scope="col" style="background-color: cadetblue; color: black;">pilih kuota</th>
               </tr>
             </thead>
             <tbody>
             <?php
+            $tabel=getAllKwn();
                       // Menampilkan data dari tabel jadwal
-                      if (count($res2) > 0) {
-                          foreach ($res2 as $row) {?>
+                      if (count($tabel) > 0) {
+                          foreach ($tabel as $row) {?>
                               <tr>
-                                  <td><?= $row["tanggal"]?></td>
-                                  <td><?=$row["namaGunung"] ?></td>
-                                  <td><?=$row["kuota"] ?></td>
-                            <?php if($row['kuota']>0){?>
+                                  <td><?= $row["idKewarganegaraan"]?></td>
+                                  <td><?=$row["jenis"] ?></td>
+                                  <td><?=$row["harga"] ?></td>
+                            
                               <td>
-                                <form action="formregistrasi.php" method="get">
-                                    <input type="hidden" value="<?= $row['namaGunung']?>" name="namagunung">
-                                    <input type="hidden" value="<?= $row['idJadwal']?>" name="jadwalId">                   
-  
-                                    <!-- Pass the 'tanggal' value (date of trekking) to booking.php -->
-                                    <input type="hidden" value="<?= $row['tanggal'] ?>" name="tanggal_mendaki"> 
-  
-                                    <button type="submit" class="btn btn-secondary">ambil kuota</button>
-                                </form>
+                                <form action="update_harga.php" method="get">
+                                    <input type="hidden" value="<?= $row["idKewarganegaraan"]?>" name="iDkwn">
+                                    <div class="m-3">
+                                      </div>
+                                      <button type="submit" class="btn btn-primary" >
+                                        update
+                                      </button>
+                                    </form>
                               </td>
   
           <?php 
-                              }else{
-                                echo "<td>kosong</td>";
-                              }
+                              
                                   
                              echo "</tr>";
                           }
@@ -127,19 +125,15 @@ if($_SESSION['akses'] != 'admin'){
                       }
   
                       // Menutup koneksi
-                      $conn->close();
+                     // $conn->close();
                       ?>
             </tbody>
           </table>
       </section>
     </div>
 
-    
 
-   
-    'll
-    l[
-    rhwrr
+    
     
 
     
