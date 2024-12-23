@@ -5,6 +5,12 @@ if($_SESSION['akses'] != 'admin'){
   echo "<script> window.location.href='../admin/login.php'</script>";
 }
 
+function getAllPembayaran(){
+  $query="SELECT * FROM pembayaran";
+  global $conn;
+  $result =mysqli_query($conn,$query);
+  return mysqli_fetch_all($result,MYSQLI_ASSOC);
+}
 
 
 ?>
@@ -38,7 +44,7 @@ if($_SESSION['akses'] != 'admin'){
     <link rel="icon" href="../img/logoyellow.png">
   </head>
 
-  <body id="page-top">
+  <body id="page-top" style="background-color:#212529">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -70,51 +76,61 @@ if($_SESSION['akses'] != 'admin'){
         </div>
     </nav>
 
-    <!-- Header -->
-    <header class="masthead">
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in">Selamat datang Admin!</div>
-         
-        </div>
-      </div>
-    </header>
 
-    <section>
+
+  <div class="container">
+    <section id="contact">
     <table class="table table-hover" style="color: white; text-align: center;">
           <thead>
             <tr>
-              <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
-              <th scope="col" style="background-color: cadetblue; color: black;">Gunung</th>
-              <th scope="col" style="background-color: cadetblue; color: black;">Kuota pendaki</th>
-              <th scope="col" style="background-color: cadetblue; color: black;">pilih kuota</th>
+              <th scope="col" style="background-color: cadetblue; color: black;">Kod. Pembayaran</th>
+              <th scope="col" style="background-color: cadetblue; color: black;">id Admin</th>
+              <th scope="col" style="background-color: cadetblue; color: black;">NO. pes</th>
+              <th scope="col" style="background-color: cadetblue; color: black;">tgl. pembayaran</th>
+              <th scope="col" style="background-color: cadetblue; color: black;">status pembayaran</th>
+              <th scope="col" style="background-color: cadetblue; color: black;">metode pembayaran</th>
+              <th scope="col" style="background-color: cadetblue; color: black;">bukti pembayaran</th>
+              <th scope="col" style="background-color: cadetblue; color: black;">verifikasi</th>
             </tr>
           </thead>
           <tbody>
-          <?php
+          <?php     $tabelpembayaran=getAllPembayaran();
                     // Menampilkan data dari tabel jadwal
-                    if (count($res2) > 0) {
-                        foreach ($res2 as $row) {?>
+                    if (count($tabelpembayaran) > 0) {
+                        foreach ($tabelpembayaran as $row) {?>
                             <tr>
-                                <td><?= $row["tanggal"]?></td>
-                                <td><?=$row["namaGunung"] ?></td>
-                                <td><?=$row["kuota"] ?></td>
-                          <?php if($row['kuota']>0){?>
+                                <td><?= $row["kodePembayaran"]?></td>
+                                <td><?=$row["idAdmin"] ?></td>
+                                <td><?=$row["noPesanan"] ?></td>
+                                <td><?=$row["tgl_pembayaran"] ?></td>
+                                <td><?=$row["status_pembayaran"] ?></td>
+                                <td><?=$row["metode_pembayaran"] ?></td>
+                                <td>
+                                <?php 
+                                if($row['status_pembayaran']=='sudah'){
+                                  ?>
+                                  <a href="../<?=$row["buktiPembayaran"] ?>">
+                                    <img src="../<?=$row["buktiPembayaran"] ?>" alt="bukti pembayaran" width="100px">
+                                  </a>
+                                <?php 
+                                }else{
+                                  echo '';
+                                }?>
+                                </td>
+
+                          <?php 
+                          if($row['status_pembayaran']=='belum'){
+                            ?>
                             <td>
                               <form action="formregistrasi.php" method="get">
-                                  <input type="hidden" value="<?= $row['namaGunung']?>" name="namagunung">
-                                  <input type="hidden" value="<?= $row['idJadwal']?>" name="jadwalId">                   
-
-                                  <!-- Pass the 'tanggal' value (date of trekking) to booking.php -->
-                                  <input type="hidden" value="<?= $row['tanggal'] ?>" name="tanggal_mendaki"> 
-
-                                  <button type="submit" class="btn btn-secondary">ambil kuota</button>
+                                  <input type="hidden" value="sudah" name="status_pembayaran"> 
+                                  <button type="submit" class="btn btn-warning">verifikasi</button>
                               </form>
                             </td>
 
-        <?php 
+                          <?php         
                             }else{
-                              echo "<td>kosong</td>";
+                              echo "<td style='color:green;'><i>verified!</i></td>";
                             }
                                 
                            echo "</tr>";
@@ -129,6 +145,7 @@ if($_SESSION['akses'] != 'admin'){
           </tbody>
         </table>
     </section>
+  </div>
 
     
 

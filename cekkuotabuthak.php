@@ -131,7 +131,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           <?php
                     // Menampilkan data dari tabel jadwal
                     if (count($res2) > 0) {
-
                         foreach ($res2 as $row) {?>
                             <tr>
                                 <td><?= $row["tanggal"]?></td>

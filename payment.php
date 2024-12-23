@@ -30,23 +30,35 @@ if ($result->num_rows > 0) {
 
 // Proses jika metode pembayaran dipilih
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['metode_pembayaran'])) {
+    $statuspembayaran='';
     $metodePembayaran = $_POST['metode_pembayaran'];
+    if($metodePembayaran=='transfer'){
+      $statuspembayaran='sudah';
+    }elseif($metodePembayaran=='cash'){
+      $statuspembayaran='belum';
+    }
 
     // Tanggal pembayaran sesuai hari ini
-    $tglPembayaran = date('Y-m-d');
+    date_default_timezone_set('Asia/Jakarta');
+    $tglPembayaran = date('Y-m-d H:i:s');
+  var_dump( $tglPembayaran);
+
 
     // Simpan data pembayaran ke dalam tabel pembayaran
-    $insertSql = "INSERT INTO pembayaran (noPesanan, tgl_pembayaran, metode_pembayaran) 
-                  VALUES (?, ?, ?)";
+    $insertSql = "INSERT INTO pembayaran (noPesanan, tgl_pembayaran, metode_pembayaran, status_pembayaran) 
+                  VALUES (?, ?, ?, ?)";
     $insertStmt = $conn->prepare($insertSql);
 
     if (!$insertStmt) {
         die("<div class='alert alert-danger text-center'>Error prepare insert: " . $conn->error . "</div>");
     }
 
-    $insertStmt->bind_param('iss', $noPesanan, $tglPembayaran, $metodePembayaran);
+    $insertStmt->bind_param('isss', $noPesanan, $tglPembayaran, $metodePembayaran, $statuspembayaran);
     $insertStmt->execute();
 
+      // Tutup form pertama
+      $insertStmt->close();
+     
     // Pesan konfirmasi berdasarkan metode pembayaran
     if ($metodePembayaran === 'transfer') {
         echo "<div class='alert alert-info text-center' style='padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);'>
@@ -66,9 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['metode_pembayaran']))
         echo "<div class='alert alert-danger text-center' style='padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);'>Metode pembayaran tidak valid.</div>";
     }
     
-    // Tutup form pertama
-    $insertStmt->close();
-    exit;
+   exit;
 }
 
 // Proses untuk unggah bukti pembayaran

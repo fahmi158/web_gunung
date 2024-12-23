@@ -54,7 +54,7 @@ function deleteById($id){
     <link rel="icon" href="../img/logoyellow.png">
   </head>
 
-  <body id="page-top">
+  <body id="page-top" style="background-color:#212529">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -125,18 +125,23 @@ function deleteById($id){
                                   <td><?=$row["kuota"] ?></td>
                             <?php if($row['kuota']>0){?>
                               <td>
-                                <div class="d-flex m-2">
-                                  <form action="update_jadwal.php" method="get">
-                                    <input type="hidden" value="<?= $row['idJadwal']?>" name="id">                   
-                                    <button type="submit" class="btn btn-warning">update </button>
-                                  </form>
-                                  <form action="" method="POST" onsubmit="return confirm('hapus data?');">
-  
-                                      <input type="hidden" value="<?= $row['idJadwal']?>" name="id">                   
-                                      <input type="hidden" value="hapus" name="action">                   
-    
-                                      <button type="submit" class="btn btn-danger">Hapus </button>
-                                  </form>
+                              <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center ">
+                                  <div class="text-center ">
+                                    <div class="d-flex justify-content-center align-items-center flex-wrap ">
+                                      <!-- Form Update -->
+                                      <form action="update_jadwal.php" method="get" class="m-2">
+                                        <input type="hidden" value="<?= $row['idJadwal'] ?>" name="id">
+                                        <button type="submit" class="btn btn-warning">Update</button>
+                                      </form>
+
+                                      <!-- Form Hapus -->
+                                      <form action="" method="POST" onsubmit="return confirm('Hapus data?');" class="m-2">
+                                        <input type="hidden" value="<?= $row['idJadwal'] ?>" name="id">
+                                        <input type="hidden" value="hapus" name="action">
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                      </form>
+                                    </div>
+                                  </div>
                                 </div>
                               </td>
   
