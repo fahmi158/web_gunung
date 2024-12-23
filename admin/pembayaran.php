@@ -107,7 +107,7 @@ function getAllPembayaran(){
                                 <td><?=$row["metode_pembayaran"] ?></td>
                                 <td>
                                 <?php 
-                                if($row['status_pembayaran']=='sudah'){
+                                if($row['status_pembayaran']=='sudah' and $row["metode_pembayaran"] != 'cash' ){
                                   ?>
                                   <a href="../<?=$row["buktiPembayaran"] ?>">
                                     <img src="../<?=$row["buktiPembayaran"] ?>" alt="bukti pembayaran" width="100px">
@@ -122,9 +122,11 @@ function getAllPembayaran(){
                           if($row['status_pembayaran']=='belum'){
                             ?>
                             <td>
-                              <form action="formregistrasi.php" method="get">
+                              <form action="" method="POST" onsubmit="return confirm('verifikasi pembayaran?');">
                                   <input type="hidden" value="sudah" name="status_pembayaran"> 
-                                  <button type="submit" class="btn btn-warning">verifikasi</button>
+                                  <input type="hidden" value="<?= $row["kodePembayaran"]?>" name="IDpembayaran">
+                                  <input type="hidden" value="verifikasi" name="action">
+                                  <button type="submit" class="btn btn-warning" >verifikasi</button>
                               </form>
                             </td>
 
@@ -140,14 +142,64 @@ function getAllPembayaran(){
                     }
 
                     // Menutup koneksi
-                    $conn->close();
+                    //$conn->close();
                     ?>
           </tbody>
         </table>
     </section>
   </div>
 
-    
+  <?php 
+  if($_SERVER['REQUEST_METHOD']=="POST"){
+    if($_POST['action']=='verifikasi'){
+      echo 'on POST';
+      $id=$_POST['IDpembayaran'];
+      $status=$_POST['status_pembayaran'];
+  
+      $queryupdate=" UPDATE pembayaran
+      SET status_pembayaran = '$status'
+      WHERE kodePembayaran = $id ";
+  
+      if(mysqli_query($conn,$queryupdate)){
+        echo "<script>alert('verivikasi berhasil!')</script>";
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+      }else{
+        echo "<script>alert('verivikasi berhasil!')</script>";
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+      }
+    }
+  }
+  ?>
+
+<?php
+// if($_SERVER['REQUEST_METHOD'] == "POST"){
+//     echo 'on POST';
+//     $id = $_POST['IDpembayaran'];
+//     $status = $_POST['status_pembayaran'];
+
+//     // Prepare and bind statement
+//     $queryupdate = "UPDATE pembayaran
+//                     SET status_pembayaran = ?
+//                     WHERE kodePembayaran = ?";
+//     $stmt = $conn->prepare($queryupdate);
+//     $stmt->bind_param('si', $status, $id);
+
+//     // Execute and check results
+//     if ($stmt->execute()) {
+//         if ($stmt->affected_rows > 0) {
+//             echo "<script>alert('Verifikasi berhasil!')</script>";
+//         } else {
+//             echo "<script>alert('Tidak ada perubahan data!')</script>";
+//         }
+//     } else {
+//         echo "<script>alert('Verifikasi gagal! Error: {$stmt->error}')</script>";
+//     }
+//     $stmt->close();
+// }
+?>
+
 
    
     

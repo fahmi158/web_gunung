@@ -111,7 +111,7 @@ function deleteById($id){
                 <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
                 <th scope="col" style="background-color: cadetblue; color: black;">Gunung</th>
                 <th scope="col" style="background-color: cadetblue; color: black;">Kuota pendaki</th>
-                <th scope="col" style="background-color: cadetblue; color: black;">pilih kuota</th>
+                <th scope="col" style="background-color: cadetblue; color: black;"></th>
               </tr>
             </thead>
             <tbody>
