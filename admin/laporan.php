@@ -4,9 +4,43 @@ session_start();
 if($_SESSION['akses'] != 'admin'){
   echo "<script> window.location.href='../admin/login.php'</script>";
 }
+$show='none';
 
+function bindingarr($arr){
+  $result=[];
+  foreach($arr as $data){
+      $result[$data['waktu_transaksi']]=$data['subtotal'];
+  }
+  return $result;
+}
 
+function totalByDay($array){
+  $result=[];
+  foreach($array as $datkey => $data){
+      if(! array_key_exists($datkey,$result)){
+          $result[$datkey]=$data;
+      }else{
+          $result[$datkey]+=$data;
+      }
+  }
+  return $result;
 
+}
+
+function ambiltangal($array){
+  $result=[];
+  foreach($array as $key=> $data){
+      $result[]=$key;
+  }
+  return $result;
+}
+function ambiltotal($array){
+  $result=[];
+  foreach($array as $key => $data){
+      $result[]=$data;
+  }
+  return $result;
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +72,7 @@ if($_SESSION['akses'] != 'admin'){
     <link rel="icon" href="../img/logoyellow.png">
   </head>
 
-  <body id="page-top">
+  <body id="page-top" style="background-color:#212529">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -71,64 +105,109 @@ if($_SESSION['akses'] != 'admin'){
     </nav>
 
     <!-- Header -->
-    <header class="masthead">
+    <!-- <header class="masthead">
       <div class="container">
         <div class="intro-text">
           <div class="intro-lead-in">Selamat datang Admin!</div>
          
         </div>
       </div>
-    </header>
+    </header> -->
+  <div class="container">
 
     <section>
-    <table class="table table-hover" style="color: white; text-align: center;">
-          <thead>
-            <tr>
-              <th scope="col" style="background-color: cadetblue; color: black;">Tanggal Mendaki</th>
-              <th scope="col" style="background-color: cadetblue; color: black;">Gunung</th>
-              <th scope="col" style="background-color: cadetblue; color: black;">Kuota pendaki</th>
-              <th scope="col" style="background-color: cadetblue; color: black;">pilih kuota</th>
-            </tr>
-          </thead>
-          <tbody>
-          <?php
-                    // Menampilkan data dari tabel jadwal
-                    if (count($res2) > 0) {
-                        foreach ($res2 as $row) {?>
-                            <tr>
-                                <td><?= $row["tanggal"]?></td>
-                                <td><?=$row["namaGunung"] ?></td>
-                                <td><?=$row["kuota"] ?></td>
-                          <?php if($row['kuota']>0){?>
-                            <td>
-                              <form action="formregistrasi.php" method="get">
-                                  <input type="hidden" value="<?= $row['namaGunung']?>" name="namagunung">
-                                  <input type="hidden" value="<?= $row['idJadwal']?>" name="jadwalId">                   
+    <div class="container">
+    <br><br>
+       <div class="page-header">
+           <h2> Laporan Keuangan </h2>
+       </div>
+       <div class="container">
+           <form action="" method="POST">
+          <div class="row">
+              <div class="col-lg-3">
+              <label for="tglawal" class="form-lable">tanggal awal</label>
+              <input type="date" class="form-control" placeholder="tanggal awal" name="tanggalawal" value="<?php if(isset($_POST['tanggalawal'])){ echo $_POST['tanggalawal'];}?>">
+          </div>
+          <div class="col-lg-3">
+            <label for="tglakhir" class="form-lable">tanggal akhir</label>
+              <input type="date" class="form-control" id="tglakhir" placeholder="tanggal akhir" name="tanggalakhir" value="<?php if(isset($_POST['tanggalakhir'])){ echo $_POST['tanggalakhir'];}?>">
+          </div>
+                  <button type="submit" class="btn btn-primary mt-4 m-2">lihat laporan Transaksi</button>
+              </div>
+          </div>
+          </form>
+       </div>
+    </div>
+<?php 
+if($_SERVER['REQUEST_METHOD']=='POST'){
+    $tglawal=$_POST['tanggalawal'];
+    $tglakhir=$_POST['tanggalakhir'];
+    $query="SELECT tgl_pendakian,total-pembayaran FROM booking WHERE tgl_pendakian BETWEEN '$tglawal' AND '$tglakhir'";
+    $result=mysqli_query($connect,$query);
+    $data=mysqli_fetch_all($result,MYSQLI_ASSOC);
+    //var_dump($data);
+    $tabeldata=totalByDay( bindingarr($result));
+    $show='block';
+}
+?>
+    <div class="container">
+      
+<div style="display: <?= $show?>">
+    
+    <div class="d-flex justify-content-center">
+    
+    <div class="w-65 p-3 ">
+        
+        <div>
+        <canvas id="myChart"></canvas>
+        </div>
+    
+        <script>
+        const ctx = document.getElementById('myChart');
+    
+        new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: <?= json_encode( ambiltangal($tabeldata))?>,
+            datasets: [{
+            label: '# of Votes',
+            data: <?= json_encode( ambiltotal($tabeldata))?>,
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
+    </script>
+    
+    </div>
+    </div>
 
-                                  <!-- Pass the 'tanggal' value (date of trekking) to booking.php -->
-                                  <input type="hidden" value="<?= $row['tanggal'] ?>" name="tanggal_mendaki"> 
+       <table id="tables" class="table table-responsive table-bordered table-striped">
+           <thead>
+               <tr>
+                   <th style="text-align: center;"> Tanggal  </th>
+                   <th style="text-align: center;"> total perhari </th>
+               </tr>
+           </thead>
+           <?php foreach($tabeldata as $key =>$dat):?>
+                   <tr>
+                       <td style="text-align: center;"><?= $key ?></td>
+                       <td style="text-align: center;"><?= $dat ?></td>
+                   </tr>
+            <?php endforeach;?>
+       </table>
+    </div>
+</div>
 
-                                  <button type="submit" class="btn btn-secondary">ambil kuota</button>
-                              </form>
-                            </td>
-
-        <?php 
-                            }else{
-                              echo "<td>kosong</td>";
-                            }
-                                
-                           echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='2'>Tidak ada data yang ditemukan</td></tr>";
-                    }
-
-                    // Menutup koneksi
-                    $conn->close();
-                    ?>
-          </tbody>
-        </table>
+   
     </section>
+  </div>
 
     
 
